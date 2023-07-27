@@ -15,8 +15,8 @@ public class MainMenuUI : MonoBehaviour
     public GameObject blackScreen, blackScreen2, firstScreen;
     public Slider musicSlider, soundSlider;
     [SerializeField]
-    private Animator mainMenuAnim, backgroundAnim, playerInfoWindowAnim, playerInfoBtnAnim, playerLvlBtnAnim;
-    public Animator loadingScreenAnim, tipModules;
+    private Animator mainMenuAnim, backgroundAnim, playerInfoWindowAnim, settingWindowAnim, playerInfoBtnAnim, playerLvlBtnAnim;
+    public Animator loadingScreenAnim, tipModules, levelWindowAnim;
     //player info window
     public Image playerImg;
     public TextMeshProUGUI lvlText, hpText, abcText, coinText, bookText;
@@ -108,13 +108,13 @@ public class MainMenuUI : MonoBehaviour
         {
             bookBtn.enabled = true;
             //bookAdsImg.enabled = true;
-            playerInfoWindowAnim.SetTrigger("showAds");
+            PlayerInfoWindowAnim(2);
         }
         else
         {
             bookBtn.enabled = false;
             //bookAdsImg.enabled = false;
-            playerInfoWindowAnim.SetTrigger("show");
+            PlayerInfoWindowAnim(1);
         }
     }
     //show level up requirement text
@@ -250,8 +250,8 @@ public class MainMenuUI : MonoBehaviour
     public IEnumerator ShowAnim()
     {
         yield return new WaitForSeconds(0);
-        mainMenuAnim.SetTrigger("show");
-        backgroundAnim.SetTrigger("show");
+        MainMenuAnim(1);
+        BackgroundAnim(1);
         Debug.Log("main menu show");
         GameManager.instance.OnMainMenu();
     }
@@ -259,8 +259,28 @@ public class MainMenuUI : MonoBehaviour
     {
         yield return new WaitForSeconds(0);
         //mainMenuAnim.SetTrigger("hide");
-        backgroundAnim.SetTrigger("hide");
+        BackgroundAnim(0);
         Debug.Log("main menu hide");
+    }
+    public void MainMenuAnim(int num)
+    {
+        mainMenuAnim.SetInteger("state", num);
+    }
+    public void BackgroundAnim(int num)
+    {
+        backgroundAnim.SetInteger("state", num);
+    }
+    public void PlayerInfoWindowAnim(int num)
+    {
+        playerInfoWindowAnim.SetInteger("state", num);
+    }
+    public void SettingWindowAnim(int num)
+    {
+        settingWindowAnim.SetInteger("state", num);
+    }
+    public void LevelWindowAnim(int num)
+    {
+        levelWindowAnim.SetInteger("state", num);
     }
     //---------------------------------------------------
 

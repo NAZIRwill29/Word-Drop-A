@@ -66,16 +66,23 @@ public class AdsMediate : MonoBehaviour
     //show rewarded
     public void ShowRewarded(string rewardType)
     {
-        if (IronSource.Agent.isRewardedVideoAvailable())
+        try
         {
-            reward = rewardType;
-            IronSource.Agent.showRewardedVideo();
+            if (IronSource.Agent.isRewardedVideoAvailable())
+            {
+                reward = rewardType;
+                IronSource.Agent.showRewardedVideo();
+            }
+            else
+            {
+                Debug.Log("Rewarded ads not available");
+                if (text)
+                    text.text = "Rewarded ads not available";
+            }
         }
-        else
+        catch (System.Exception e)
         {
-            Debug.Log("Rewarded ads not available");
-            if (text)
-                text.text = "Rewarded ads not available";
+            Debug.Log("ShowRewardedAd failed : " + e);
         }
     }
 
@@ -83,25 +90,40 @@ public class AdsMediate : MonoBehaviour
     //load interstitial - load in start game
     public void LoadInterstitial()
     {
-        IronSource.Agent.loadInterstitial();
-        if (text)
-            text.text = "Interstitial loaded successfully";
+        try
+        {
+            IronSource.Agent.loadInterstitial();
+            if (text)
+                text.text = "Interstitial loaded successfully";
+        }
+        catch (System.Exception e)
+        {
+            Debug.Log("LoadInterstitialAd failed : " + e);
+        }
     }
 
     //TODO () - InterstitialAd
     //show interstitial - show after finish game
     public void ShowInterstitial()
     {
-        if (IronSource.Agent.isInterstitialReady())
+        try
         {
-            IronSource.Agent.showInterstitial();
+            if (IronSource.Agent.isInterstitialReady())
+            {
+                IronSource.Agent.showInterstitial();
+            }
+            else
+            {
+                Debug.Log("Interstitial not ready");
+                if (text)
+                    text.text = "Interstitial not ready";
+            }
         }
-        else
+        catch (System.Exception e)
         {
-            Debug.Log("Interstitial not ready");
-            if (text)
-                text.text = "Interstitial not ready";
+            Debug.Log("ShowInterstitialAd failed : " + e);
         }
+
     }
 
     //Load banner

@@ -50,7 +50,7 @@ public class GameManager : MonoBehaviour
     public bool isStartGame;
     public bool isPauseGame = true, isTutorialMode, isHasTutorial, isFinishLoadScene, isStartStagePlay, isInStage;
     //isInStage;
-    private bool isCanShowAds, isStartPlayTime;
+    private bool isStartPlayTime;
     public bool isPremiumPlan, isBookAdsUsed = true, isSuccesLogin, isSuccessLoadCloud;
     public List<int> skinIndexBought;
     public float playTime;
@@ -166,6 +166,7 @@ public class GameManager : MonoBehaviour
     private IEnumerator InBackToHome()
     {
         loadingScene.LoadLoadingScene();
+        adsMediate.LoadInterstitial();
         yield return StartCoroutine(InBackToHomeEvent());
         yield return StartCoroutine(mainMenuUI.ShowAnim());
     }
@@ -240,16 +241,18 @@ public class GameManager : MonoBehaviour
         //check premium plan - no ads
         if (isPremiumPlan)
             return;
-        //check ads cycle
-        if (isCanShowAds)
+        int randomNo = Random.Range(0, 7);
+        //check ads cycle - show when get no 2,4,6
+        if (randomNo % 2 == 0 && randomNo != 0)
         {
+            Debug.Log("show interstitial ads");
             adsMediate.ShowInterstitial();
-            isCanShowAds = false;
+            //isCanShowAds = false;
         }
         else
         {
-            Debug.Log("show ads");
-            isCanShowAds = true;
+            Debug.Log("no ads");
+            //isCanShowAds = true;
         }
     }
 
@@ -283,7 +286,7 @@ public class GameManager : MonoBehaviour
     {
         SaveState(true, false);
         mainMenuUI.blackScreen2.SetActive(true);
-        adsMediate.LoadInterstitial();
+        //adsMediate.LoadInterstitial();
         StartGame(inGame.nextStageName, inGame.nextStageMode);
         Debug.Log("continue game");
     }
@@ -402,13 +405,15 @@ public class GameManager : MonoBehaviour
     {
         string playerId = anonymousAuthenticate.playerId;
         connectBrowser.ReqDelUseAccUrl(playerId);
+        cloudSave.DeleteDataCloud();
+        ResetData();
     }
 
     public void ResetData()
     {
         //gameData.isSoundOn = true;
         //gameData.isMusicOn = true;
-        gameData.playTime = 0;
+        //gameData.playTime = 0;
         gameData.soundVolume = 1;
         gameData.musicVolume = 1;
         gameData.dateNow = "";
@@ -445,7 +450,7 @@ public class GameManager : MonoBehaviour
     {
         if (!isSuccesLogin)
             return;
-        if (!isSuccessLoadCloud)
+        if (isSuccessLoadCloud)
             return;
         //gameData.savedDate = "";
         Debug.Log("save : dateNow = " + System.DateTime.Now.ToString("MM/dd/yyyy") + ", savedDate = " + gameData.savedDate);
@@ -617,23 +622,20 @@ public class GameManager : MonoBehaviour
     {
         //prevent from take low pass stages
         if (passStageNo < inGame.currentStageNo)
-            passStageNo = inGame.currentStageNo;
-        else
         {
+            passStageNo = inGame.currentStageNo;
             isBookAdsUsed = false;
             //when pass new next stage - save cloud
             SaveState(false, false);
         }
-
-
     }
 
     //get book
     public void GetBook()
     {
         isBookAdsUsed = true;
-        SaveState(true, false);
         player.ReceiveBook();
+        SaveState(true, false);
         mainMenuUI.PlayerInfoWindow();
     }
 

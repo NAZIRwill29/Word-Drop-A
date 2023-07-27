@@ -1734,7 +1734,7 @@ MonoBehaviour:
   timeBook: 0
   lastBookTime: 0
   lastCoinTime: 0
-  timeBookDuration: 40
+  timeBookDuration: 25
   timeCoinDuration: 15
   dragCoin: 1.75
   dragBook: 1.5
@@ -7832,7 +7832,7 @@ MonoBehaviour:
   groundManagerAudioClip:
   - {fileID: 8300000, guid: 5543cefa2f8fc9e40bb3b5af6eac40ad, type: 3}
   - {fileID: 8300000, guid: 69c9a9fffd602ee43a60df4ea572155c, type: 3}
-  - {fileID: 8300000, guid: d9419ba0bfac1e84a95418ac5851caf6, type: 3}
+  - {fileID: 8300000, guid: c9b900879fa171d4eb821de6ee053020, type: 3}
   riseNum: 0.505
   currentActiveGroundNo: 0
 --- !u!82 &1876517266

@@ -1653,7 +1653,7 @@ MonoBehaviour:
   timeBook: 0
   lastBookTime: 0
   lastCoinTime: 0
-  timeBookDuration: 40
+  timeBookDuration: 100
   timeCoinDuration: 15
   dragCoin: 1.75
   dragBook: 1.5
@@ -9482,7 +9482,7 @@ PrefabInstance:
       objectReference: {fileID: 2120178772}
     - target: {fileID: 4443392488500488708, guid: eba322fba443ee948899f066fae6acb3, type: 3}
       propertyPath: timeLeft
-      value: 180
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 4443392488500488708, guid: eba322fba443ee948899f066fae6acb3, type: 3}
       propertyPath: winSprite

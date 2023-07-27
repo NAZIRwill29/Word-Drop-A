@@ -118,7 +118,7 @@ PrefabInstance:
     - target: {fileID: 4644710323527676690, guid: 2221fd9c89614214ca59fd9ffd7978a7, type: 3}
       propertyPath: monsterAudioClip.Array.data[2]
       value: 
-      objectReference: {fileID: 8300000, guid: efa771701318cc74c814615a62528716, type: 3}
+      objectReference: {fileID: 8300000, guid: 93e1390dab2ef7d4683e9bc39553184c, type: 3}
     - target: {fileID: 4644710323527676691, guid: 2221fd9c89614214ca59fd9ffd7978a7, type: 3}
       propertyPath: m_Name
       value: Monster_Shark Variant
@@ -193,7 +193,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6248268606959743171, guid: 326ad24a54e239343a55bff0dd7fd93b, type: 3}
       propertyPath: m_SortingLayer
-      value: 5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6248268606959743171, guid: 326ad24a54e239343a55bff0dd7fd93b, type: 3}
       propertyPath: m_SortingOrder

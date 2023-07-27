@@ -7,8 +7,8 @@ using TMPro;
 public class GameMenuUi : MonoBehaviour
 {
     //sound
-    //  0          1
-    //word      build
+    //  0          1        2
+    //word      build    complete
     [SerializeField] private AudioClip[] gameMenuUiAudioClip;
     public AudioSource gameMenuUiAudioSource;
     //[SerializeField] private Player player;
@@ -679,8 +679,10 @@ public class GameMenuUi : MonoBehaviour
             }
             else
             {
+                //set ladder complete notification
                 SetBuildBtninteractable(0, false);
                 completeLadderImg.SetActive(true);
+                PlaySoundComplete();
             }
         }
         //ground
@@ -987,6 +989,10 @@ public class GameMenuUi : MonoBehaviour
         // if (gameMenuUiAudioSource.isPlaying)
         //     return;
         gameMenuUiAudioSource.PlayOneShot(gameMenuUiAudioClip[1]);
+    }
+    public void PlaySoundComplete()
+    {
+        gameMenuUiAudioSource.PlayOneShot(gameMenuUiAudioClip[2]);
     }
     //----------------------------------------------------
 

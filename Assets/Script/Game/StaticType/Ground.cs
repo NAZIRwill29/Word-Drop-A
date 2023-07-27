@@ -87,6 +87,8 @@ public class Ground : MonoBehaviour
                 //shake camera
                 GameManager.instance.cameraManager.CamShake();
             }
+            else
+                grounds.groundManager.PlaySoundDamage2();
         }
     }
 

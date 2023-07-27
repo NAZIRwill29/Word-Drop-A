@@ -157,10 +157,10 @@ public class Monster : MonoBehaviour
         transform.position -= new Vector3(0, fallBackDist / 60, 0);
         //Debug.Log("slow obj");
         //check audio source is playing
-        //PlaySoundSlime();
+        PlaySoundSlime();
         if (!isSlowByObj)
         {
-            PlaySoundSlime();
+            //PlaySoundSlime();
             hpChange -= 1;
             isSlowByObj = true;
         }
@@ -352,8 +352,8 @@ public class Monster : MonoBehaviour
     }
     public void PlaySoundSlime()
     {
-        // if (monsterAudioSource.isPlaying)
-        //     return;
+        if (monsterAudioSource.isPlaying)
+            return;
         monsterAudioSource.PlayOneShot(monsterAudioClip[2]);
         //Debug.Log("play sound slime");
     }

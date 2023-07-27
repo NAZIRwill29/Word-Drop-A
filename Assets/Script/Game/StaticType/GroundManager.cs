@@ -7,8 +7,8 @@ public class GroundManager : MonoBehaviour
     //need 13 grounds
     [SerializeField] private Grounds[] arrGrounds;
     public AudioSource groundManagerAudioSource;
-    //  0           1           2
-    //damage    attack1     attack2
+    //  0           1           2         3
+    //damage    attack1      damage2    attack2
     [SerializeField] private AudioClip[] groundManagerAudioClip;
     public float riseNum = 0.513f;
     public int currentActiveGroundNo;
@@ -66,6 +66,12 @@ public class GroundManager : MonoBehaviour
         // if (groundManagerAudioSource.isPlaying)
         //     return;
         groundManagerAudioSource.PlayOneShot(groundManagerAudioClip[1]);
+    }
+    public void PlaySoundDamage2()
+    {
+        // if (groundManagerAudioSource.isPlaying)
+        //     return;
+        groundManagerAudioSource.PlayOneShot(groundManagerAudioClip[0]);
     }
     public void PlaySoundAttack2()
     {
