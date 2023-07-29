@@ -1422,6 +1422,7 @@ MonoBehaviour:
   slimePt: 2
   dangerDist: 0
   currentStageNo: 7
+  sceneName: Stage 3-1
   nextStageName: Stage 3-2
   nextStageMode: 0
   isBookSpawnOne: 0

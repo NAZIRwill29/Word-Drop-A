@@ -241,7 +241,7 @@ public class GameManager : MonoBehaviour
         //check premium plan - no ads
         if (isPremiumPlan)
             return;
-        int randomNo = Random.Range(0, 7);
+        int randomNo = Random.Range(0, 6);
         //check ads cycle - show when get no 2,4,6
         if (randomNo % 2 == 0 && randomNo != 0)
         {
@@ -684,5 +684,11 @@ public class GameManager : MonoBehaviour
             SceneManager.sceneLoaded += LoadState;
     }
     //-------------------------------------------------------
+
+    //testing
+    public void PlaySounPlayer()
+    {
+        player.PlaySoundLevelUp();
+    }
 }
 

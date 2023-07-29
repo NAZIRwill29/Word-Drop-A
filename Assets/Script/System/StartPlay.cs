@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class StartPlay : MonoBehaviour
 {
     public Animator startPlayAnim;
+    [SerializeField] private TextMeshProUGUI levelText;
     private Touch touch;
 
     void Update()
@@ -30,6 +32,8 @@ public class StartPlay : MonoBehaviour
 
     public void SetStartPlay()
     {
+        //set level text
+        levelText.text = GameManager.instance.inGame.sceneName;
         //set perk 
         int perkNo = 10;
         //perk 1

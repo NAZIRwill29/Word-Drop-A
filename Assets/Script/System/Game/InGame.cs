@@ -26,6 +26,7 @@ public class InGame : MonoBehaviour
     public float dangerDist;
     //current stage detail
     public int currentStageNo;
+    public string sceneName;
     //next stage detail
     public string nextStageName;
     public int nextStageMode;
