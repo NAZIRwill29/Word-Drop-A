@@ -134,7 +134,7 @@ public class Player : MonoBehaviour
         ChangeImmuneDamage(true);
         ReturnGameModeAfterDeath();
         PlaySoundRevive();
-        playerData.hp = 3;
+        playerData.hpTemp = playerData.hp;
         gameMenuUi.SetHpUI(true);
         switch (playerData.deathScenario)
         {
@@ -229,10 +229,10 @@ public class Player : MonoBehaviour
         }
         if (playerData.isImmune)
             return;
-        if (playerData.hp > 1)
+        if (playerData.hpTemp > 1)
         {
             PlaySoundDamage();
-            playerData.hp--;
+            playerData.hpTemp--;
             //set push forward by monster
             //StartPushByMonster();
             //shake camera
@@ -425,16 +425,16 @@ public class Player : MonoBehaviour
                 LevelUpEvent(10, 1, isShowOnly);
                 break;
             case 3:
-                LevelUpEvent(40, 3, isShowOnly);
+                LevelUpEvent(30, 3, isShowOnly);
                 break;
             case 4:
-                LevelUpEvent(65, 5, isShowOnly);
+                LevelUpEvent(55, 5, isShowOnly);
                 break;
             case 5:
-                LevelUpEvent(100, 8, isShowOnly);
+                LevelUpEvent(90, 8, isShowOnly);
                 break;
             case 6:
-                LevelUpEvent(150, 12, isShowOnly);
+                LevelUpEvent(135, 12, isShowOnly);
                 break;
             default:
                 break;
@@ -480,38 +480,50 @@ public class Player : MonoBehaviour
         {
             case 1:
                 playerData.charMaxNo = 10;
-                playerData.hp = 3;
+                playerData.hpTemp = 2;
+                playerData.hp = 2;
                 playerData.immuneDamageDuration = 150;
+                playerData.addWordPt = 0;
                 gameMenuUi.SetPlayerLevelUI(0);
                 break;
             case 2:
                 playerData.charMaxNo = 12;
-                playerData.hp = 3;
+                playerData.hpTemp = 2;
+                playerData.hp = 2;
                 playerData.immuneDamageDuration = 150;
+                playerData.addWordPt = 0;
                 gameMenuUi.SetPlayerLevelUI(1);
                 break;
             case 3:
                 playerData.charMaxNo = 14;
-                playerData.hp = 4;
+                playerData.hpTemp = 3;
+                playerData.hp = 3;
                 playerData.immuneDamageDuration = 200;
+                playerData.addWordPt = 1;
                 gameMenuUi.SetPlayerLevelUI(1);
                 break;
             case 4:
                 playerData.charMaxNo = 16;
-                playerData.hp = 4;
+                playerData.hpTemp = 3;
+                playerData.hp = 3;
                 playerData.immuneDamageDuration = 200;
+                playerData.addWordPt = 1;
                 gameMenuUi.SetPlayerLevelUI(1);
                 break;
             case 5:
                 playerData.charMaxNo = 18;
-                playerData.hp = 5;
+                playerData.hpTemp = 4;
+                playerData.hp = 4;
                 playerData.immuneDamageDuration = 250;
+                playerData.addWordPt = 2;
                 gameMenuUi.SetPlayerLevelUI(1);
                 break;
             case 6:
                 playerData.charMaxNo = 20;
+                playerData.hpTemp = 5;
                 playerData.hp = 5;
                 playerData.immuneDamageDuration = 250;
+                playerData.addWordPt = 3;
                 gameMenuUi.SetPlayerLevelUI(1);
                 break;
             default:

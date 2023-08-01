@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerData : MonoBehaviour
 {
-    public int hp = 3;
+    public int hp = 2, hpTemp;
     public float speed = 0.01f;
     //LifeLine
     public int lifeLineTrigger;
@@ -15,6 +15,7 @@ public class PlayerData : MonoBehaviour
     //immune damage - use for in start game
     public int immuneDamageDuration = 150;
     public int immuneDamageCount;
+    public int addWordPt;
     public Vector3 originPos;
     //player info
     public int levelPlayer = 1, charMaxNo = 10, dieNum, bookNum;

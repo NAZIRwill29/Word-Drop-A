@@ -24,6 +24,9 @@ public class GameMenuUi : MonoBehaviour
     public Image[] alphabetStoreBtnImg, alphabetStoreBtnImg2, alphabetTutorialBtnImg;
     public Button[] alphabetWordBtn, alphabetWordTutorialBtn;
     public Image[] alphabetWordBtnImg, alphabetWordTutorialBtnImg;
+    //word pt
+    public GameObject wordPtObj, wordCoinObj;
+    public TextMeshProUGUI wordPtText, wordCoinText;
     public Image hpImg;
     //public RectTransform hpImgRT;
     public GameObject hpNotice;
@@ -395,7 +398,7 @@ public class GameMenuUi : MonoBehaviour
     public void SetPlayerLevelUI(int charLvl)
     {
         //set hp lvl ui and char container ui in menu
-        hpImg.sprite = hpSprite[GameManager.instance.playerData.hp];
+        hpImg.sprite = hpSprite[GameManager.instance.playerData.hpTemp];
         //TUTORIAL MODE ()
         if (GameManager.instance.isTutorialMode)
         {
@@ -435,9 +438,9 @@ public class GameMenuUi : MonoBehaviour
     }
     public void SetHpUI(bool isHeal)
     {
-        hpImg.sprite = hpSprite[GameManager.instance.playerData.hp];
+        hpImg.sprite = hpSprite[GameManager.instance.playerData.hpTemp];
         //Debug.Log("change hp Ui");
-        if (GameManager.instance.playerData.hp < 2)
+        if (GameManager.instance.playerData.hpTemp < 2)
             hpNotice.SetActive(true);
         else
         {
@@ -588,13 +591,19 @@ public class GameMenuUi : MonoBehaviour
         if (CheckWordExist(letterCombine))
         {
             PlaySoundWord();
-            //add word pt 
-            wordPoint += letterCombine.Length;
+            //add word pt
+            int wordToWordPt = letterCombine.Length + playerData.addWordPt;
+            //if > 5 letter - get bonus - excess letter = +wordpt
+            if (letterCombine.Length > 5)
+                wordToWordPt += (letterCombine.Length - 5);
+            //set word pt
+            wordPoint += wordToWordPt;
+            StartCoroutine(ShowWordPt(wordToWordPt));
             //add coin event
             WordToCoin();
             //player.PlaySoundWord();
             //give point based on number of char in word
-            Debug.Log("give " + wordPoint + " points");
+            Debug.Log("give " + wordToWordPt + " points");
             //remove char in data
             RemoveCharWord();
             //set word pt event
@@ -624,6 +633,15 @@ public class GameMenuUi : MonoBehaviour
         }
     }
 
+    //show wordPt get ui pop up
+    private IEnumerator ShowWordPt(int point)
+    {
+        wordPtObj.SetActive(true);
+        wordPtText.text = "" + point;
+        yield return new WaitForSeconds(1f);
+        wordPtObj.SetActive(false);
+    }
+
     //check word in word txt
     private bool CheckWordExist(string word)
     {
@@ -636,11 +654,21 @@ public class GameMenuUi : MonoBehaviour
         //if word is 4 - produce coin
         if (letterCombine.Length >= 4)
         {
-            //get coin for letter length >= 4 --- 4 letter = 1 coin
-            GameManager.instance.AddCoin((int)(letterCombine.Length / 4));
+            //get coin for letter length >= 4 --- 4 letter = 1 coin, 5 ltr = 2 coin, etc
+            int addCoin = letterCombine.Length - 3;
+            GameManager.instance.AddCoin(addCoin);
+            StartCoroutine(ShowWordCoin(addCoin));
             GameManager.instance.player.PlaySoundChar();
             SetCoinEvent();
         }
+    }
+    //show word coin get ui pop up
+    private IEnumerator ShowWordCoin(int addCoin)
+    {
+        wordCoinObj.SetActive(true);
+        wordCoinText.text = "" + addCoin;
+        yield return new WaitForSeconds(1f);
+        wordCoinObj.SetActive(false);
     }
     //set coin in gamemenu - coin info
     public void SetCoinEvent()
@@ -787,7 +815,7 @@ public class GameMenuUi : MonoBehaviour
         else if (GameManager.instance.inGame.nextStageName == "END")
             gameMenuUiAnim.SetTrigger("end");
         else
-            gameMenuUiAnim.SetTrigger("win");
+            gameMenuUiAnim.SetTrigger("winTemp");
         //Debug.Log("win window");
         GameManager.instance.player.PlaySoundWin();
         //change music background to win theme
@@ -830,6 +858,20 @@ public class GameMenuUi : MonoBehaviour
         //open real die window
         Death(true);
         GameManager.instance.mainMenuUI.PlaySoundCancel();
+    }
+
+    //get coin ads
+    //USED () - coinbtn in winTempWindow
+    public void CoinAdsButton()
+    {
+        GameManager.instance.adsMediate.ShowRewarded("coin");
+    }
+
+    //get book ads
+    //USED () - bookbtn in winTempWindow
+    public void BookAdsButton()
+    {
+        GameManager.instance.adsMediate.ShowRewarded("book");
     }
 
     //USED () - in ladder btn
@@ -974,7 +1016,7 @@ public class GameMenuUi : MonoBehaviour
     //set challenge mode
     public void SetChallengeMode()
     {
-        GameManager.instance.inGame.SetChallengeMode();
+        GameManager.instance.inGame.ChangeItemInChallengeMode();
     }
 
     //play sound -------------------------------------------

@@ -1625,8 +1625,8 @@ MonoBehaviour:
   isSlime: 1
   ladderPt: 1
   groundPt: 2
-  fencePt: 3
-  slimePt: 4
+  fencePt: 5
+  slimePt: 6
   dangerDist: 0
   currentStageNo: 12
   sceneName: Stage 4-3
@@ -1647,14 +1647,14 @@ MonoBehaviour:
   lastIncNumTime: 0
   lastCharTime: 0
   lastObsTime: 0
-  dragChar: 2.2
-  dragObs: 1.95
-  timeCharDuration: 0.525
-  timeObsDuration: 0.625
+  dragChar: 2.1
+  dragObs: 1.85
+  timeCharDuration: 0.515
+  timeObsDuration: 0.615
   timeBook: 0
   lastBookTime: 0
   lastCoinTime: 0
-  timeBookDuration: 100
+  timeBookDuration: 50
   timeCoinDuration: 15
   dragCoin: 1.75
   dragBook: 1.5
@@ -6535,7 +6535,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4362909447680567570, guid: 74254199f8ce0a449953f1200e025b4d, type: 3}
       propertyPath: speed
-      value: 0.28
+      value: 0.285
       objectReference: {fileID: 0}
     - target: {fileID: 4362909447680567570, guid: 74254199f8ce0a449953f1200e025b4d, type: 3}
       propertyPath: isNoSlowDown
@@ -9399,7 +9399,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4443392488500488707, guid: eba322fba443ee948899f066fae6acb3, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4443392488500488707, guid: eba322fba443ee948899f066fae6acb3, type: 3}
       propertyPath: m_AnchorMax.x

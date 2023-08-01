@@ -62,7 +62,6 @@ public class AdsMediate : MonoBehaviour
 
     }
 
-    //TODO () - RewardedAd
     //show rewarded
     public void ShowRewarded(string rewardType)
     {
@@ -173,6 +172,12 @@ public class AdsMediate : MonoBehaviour
                 break;
             case "book":
                 GameManager.instance.GetBook();
+                break;
+            case "coin":
+                GameManager.instance.GetCoin();
+                break;
+            case "tip":
+                GameManager.instance.ShowTip();
                 break;
             default:
                 break;

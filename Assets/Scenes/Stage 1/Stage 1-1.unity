@@ -1395,7 +1395,7 @@ MonoBehaviour:
   sceneName: Stage 1-1
   nextStageName: Stage 1-2
   nextStageMode: 0
-  isBookSpawnOne: 0
+  isBookSpawnOne: 1
   bookSpawnTime: 0
   isIncreaseDifficulty: 0
   playerPos: 0
@@ -1417,7 +1417,7 @@ MonoBehaviour:
   timeBook: 0
   lastBookTime: 0
   lastCoinTime: 0
-  timeBookDuration: 25
+  timeBookDuration: 10
   timeCoinDuration: 15
   dragCoin: 1.75
   dragBook: 1.5
@@ -8583,7 +8583,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4443392488500488708, guid: eba322fba443ee948899f066fae6acb3, type: 3}
       propertyPath: timeLeft
-      value: 120
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4443392488500488708, guid: eba322fba443ee948899f066fae6acb3, type: 3}
       propertyPath: winSprite

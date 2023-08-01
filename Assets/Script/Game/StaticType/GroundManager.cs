@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GroundManager : MonoBehaviour
 {
+    public InGame inGame;
     //need 13 grounds
     [SerializeField] private Grounds[] arrGrounds;
     public AudioSource groundManagerAudioSource;
@@ -12,6 +13,8 @@ public class GroundManager : MonoBehaviour
     [SerializeField] private AudioClip[] groundManagerAudioClip;
     public float riseNum = 0.513f;
     public int currentActiveGroundNo;
+    //challenge mode
+    private int groundChallengeNo;
     // Start is called before the first frame update
     void Start()
     {
@@ -36,6 +39,16 @@ public class GroundManager : MonoBehaviour
             GameManager.instance.inGame.ladders.ladderUse.transform.position += new Vector3(0, riseNum, 0);
             //heal from water
             GameManager.instance.player.LifeLine(GameManager.instance.playerData.lifeLineBuildTrigger);
+            //Challenge MODE ()
+            if (inGame.isChallengeStage)
+            {
+                groundChallengeNo++;
+                if (groundChallengeNo > 13)
+                {
+                    groundChallengeNo = 0;
+                    inGame.ChangeItemInChallengeMode();
+                }
+            }
         }
     }
 

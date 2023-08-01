@@ -16,12 +16,12 @@ public class MainMenuUI : MonoBehaviour
     public Slider musicSlider, soundSlider;
     [SerializeField]
     private Animator mainMenuAnim, backgroundAnim, playerInfoWindowAnim, settingWindowAnim, playerInfoBtnAnim, playerLvlBtnAnim;
-    public Animator loadingScreenAnim, tipModules, levelWindowAnim;
+    public Animator loadingScreenAnim, tipModules, levelWindowAnim, tipAnim, tipScreenAnim;
     //player info window
     public Image playerImg;
-    public TextMeshProUGUI lvlText, hpText, abcText, coinText, bookText;
+    public TextMeshProUGUI lvlText, hpText, abcText, shieldText, strengthText, addWordPtText, coinText, bookText;
     //book btn ads 
-    public Button bookBtn;
+    public Button bookBtn, coinBtn;
     //public Image bookAdsImg;
     //public GameObject[] stageBtnObj;
     public Button[] stageBtnBtn;
@@ -32,6 +32,13 @@ public class MainMenuUI : MonoBehaviour
     void Start()
     {
 
+    }
+
+    //USED () - in tipAdsBtn
+    //get tip by rewarded ads
+    public void TipAdsButton()
+    {
+        GameManager.instance.TipAds();
     }
 
     //start game - USED IN () = start button
@@ -100,6 +107,9 @@ public class MainMenuUI : MonoBehaviour
             lvlText.text = "Lv " + GameManager.instance.playerData.levelPlayer;
         hpText.text = GameManager.instance.playerData.hp.ToString();
         abcText.text = GameManager.instance.playerData.charMaxNo.ToString();
+        shieldText.text = GameManager.instance.playerData.immuneDamageDuration / 50 + "sec";
+        strengthText.text = GameManager.instance.playerData.levelPlayer.ToString();
+        addWordPtText.text = "+" + GameManager.instance.playerData.addWordPt;
         coinText.text = GameManager.instance.coin.ToString() + " (" + CoinReqLvlUpText() + ")";
         bookText.text = GameManager.instance.playerData.bookNum + " (" + BookReqLvlUpText() + ")";
         GameManager.instance.gameMenuUi.SetCoinEvent();
@@ -107,12 +117,14 @@ public class MainMenuUI : MonoBehaviour
         if (!GameManager.instance.isBookAdsUsed)
         {
             bookBtn.enabled = true;
+            coinBtn.enabled = true;
             //bookAdsImg.enabled = true;
             PlayerInfoWindowAnim(2);
         }
         else
         {
             bookBtn.enabled = false;
+            coinBtn.enabled = false;
             //bookAdsImg.enabled = false;
             PlayerInfoWindowAnim(1);
         }
@@ -136,11 +148,12 @@ public class MainMenuUI : MonoBehaviour
                 coinNeed = GameManager.instance.coin - 90;
                 break;
             case 6:
-                coinNeed = GameManager.instance.coin - 140;
+                coinNeed = GameManager.instance.coin - 135;
                 break;
             default:
                 return "";
         }
+        //add + if has more coin than needed
         if (coinNeed - 0 > 0)
             return "+" + coinNeed;
         else
@@ -169,6 +182,7 @@ public class MainMenuUI : MonoBehaviour
             default:
                 return "";
         }
+        //add + if has more book than needed
         if (bookNeed - 0 > 0)
             return "+" + bookNeed;
         else
@@ -186,6 +200,13 @@ public class MainMenuUI : MonoBehaviour
     public void BookAdsBtn()
     {
         GameManager.instance.adsMediate.ShowRewarded("book");
+        //GameManager.instance.GetBook();
+    }
+    //USED () - in coinBtn
+    //get coin by watching ads
+    public void CoinAdsBtn()
+    {
+        GameManager.instance.adsMediate.ShowRewarded("coin");
         //GameManager.instance.GetBook();
     }
     //----------------------------------------
@@ -300,7 +321,7 @@ public class MainMenuUI : MonoBehaviour
             //     return;
             // isLoadingScreenAnimate = true;
             //change tip module randomly
-            int tipNo = Random.Range(1, 10);
+            int tipNo = Random.Range(1, 12);
             tipModules.SetInteger("state", tipNo);
             //show loading screen
             loadingScreenAnim.SetInteger("state", 3);
@@ -313,6 +334,21 @@ public class MainMenuUI : MonoBehaviour
             tipModules.SetInteger("state", 0);
             loadingScreenAnim.SetInteger("state", 0);
         }
+    }
+
+    //show tip screen
+    public void ShowTip()
+    {
+        tipScreenAnim.SetBool("show", true);
+        int tipNo = Random.Range(1, 12);
+        tipAnim.SetInteger("state", tipNo);
+    }
+    //USED () - in closeTipBtn
+    //close tip screen
+    public void CloseTip()
+    {
+        tipAnim.SetInteger("state", 0);
+        tipScreenAnim.SetBool("show", false);
     }
 
     //unlock full stage

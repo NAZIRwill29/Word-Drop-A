@@ -133,7 +133,7 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator CloseFirstScene()
     {
-        yield return new WaitForSeconds(0.15f);
+        yield return new WaitForSeconds(2f);
         mainMenuUI.firstScreen.SetActive(false);
         isHasFirstOpen = true;
     }
@@ -241,9 +241,9 @@ public class GameManager : MonoBehaviour
         //check premium plan - no ads
         if (isPremiumPlan)
             return;
-        int randomNo = Random.Range(0, 6);
-        //check ads cycle - show when get no 2,4,6
-        if (randomNo % 2 == 0 && randomNo != 0)
+        int randomNo = Random.Range(0, 3);
+        //check ads cycle - show when get no 2,3
+        if (randomNo > 1)
         {
             Debug.Log("show interstitial ads");
             adsMediate.ShowInterstitial();
@@ -450,7 +450,7 @@ public class GameManager : MonoBehaviour
     {
         if (!isSuccesLogin)
             return;
-        if (isSuccessLoadCloud)
+        if (!isSuccessLoadCloud)
             return;
         //gameData.savedDate = "";
         Debug.Log("save : dateNow = " + System.DateTime.Now.ToString("MM/dd/yyyy") + ", savedDate = " + gameData.savedDate);
@@ -636,7 +636,32 @@ public class GameManager : MonoBehaviour
         isBookAdsUsed = true;
         player.ReceiveBook();
         SaveState(true, false);
-        mainMenuUI.PlayerInfoWindow();
+        if (inGame)
+            gameMenuUi.gameMenuUiAnim.SetTrigger("win");
+        else
+            mainMenuUI.PlayerInfoWindow();
+    }
+    //get coin
+    public void GetCoin()
+    {
+        isBookAdsUsed = true;
+        player.ReceiveCoin(3);
+        SaveState(true, false);
+        if (inGame)
+            gameMenuUi.gameMenuUiAnim.SetTrigger("win");
+        else
+            mainMenuUI.PlayerInfoWindow();
+    }
+
+    //request tip ads
+    public void TipAds()
+    {
+        adsMediate.ShowRewarded("tip");
+    }
+    //show tip
+    public void ShowTip()
+    {
+        mainMenuUI.ShowTip();
     }
 
     //record playtime

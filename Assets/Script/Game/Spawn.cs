@@ -9,7 +9,7 @@ public class Spawn : MonoBehaviour
     private int index, charIndex, obsIndex, bookIndex, coinIndex;
     private float posX;
     //char
-    public bool isSpawnStop, isTutorialMode;
+    public bool isSpawnStop, isTutorialMode, isBookStop;
     //alphabet list
     private char[] alphabets =
     {
@@ -96,7 +96,7 @@ public class Spawn : MonoBehaviour
                 charObj[charIndex].GetComponent<Char>().SetAlphabet(alphabets[Random.Range(0, alphabets.Length)]);
             charObj[charIndex].GetComponent<Char>().ChangeIsTouched(false);
             charIndex++;
-            if (charIndex == charObj.Length - 1)
+            if (charIndex == charObj.Length)
                 charIndex = 0;
         }
     }
@@ -111,7 +111,7 @@ public class Spawn : MonoBehaviour
             SpawnObject(obstacleObj[obsIndex]);
             obstacleObj[obsIndex].GetComponent<Obstacle>().ChangeIsTouched(false);
             obsIndex++;
-            if (obsIndex == obstacleObj.Length - 1)
+            if (obsIndex == obstacleObj.Length)
                 obsIndex = 0;
         }
     }
@@ -127,7 +127,7 @@ public class Spawn : MonoBehaviour
             coinObj[coinIndex].GetComponent<Coin>().ChangeIsTouched(false);
             coinIndex++;
             //Debug.Log("spawn coin");
-            if (coinIndex == coinObj.Length - 1)
+            if (coinIndex == coinObj.Length)
                 coinIndex = 0;
         }
     }
@@ -138,24 +138,28 @@ public class Spawn : MonoBehaviour
         if (Time.time - inGame.lastBookTime > inGame.timeBookDuration)
         {
             inGame.lastBookTime = Time.time;
-            //Debug.Log("Spawn obs");
             SpawnObject(bookObj[bookIndex]);
             bookObj[bookIndex].GetComponent<Book>().ChangeIsTouched(false);
             bookIndex++;
-            //Debug.Log("spawn book");
-            if (bookIndex == bookObj.Length - 1)
+            Debug.Log("spawn book");
+            if (bookIndex == bookObj.Length)
                 bookIndex = 0;
         }
     }
     //spawn book one time only
     public void SpawnBookOne()
     {
+        if (isBookStop)
+            return;
         inGame.timeBook += Time.deltaTime;
-        if (inGame.timeBook != inGame.bookSpawnTime)
+        //make it not spawn when time less
+        if (inGame.timeBook < inGame.bookSpawnTime)
             return;
         SpawnObject(bookObj[bookIndex]);
         bookObj[bookIndex].GetComponent<Book>().ChangeIsTouched(false);
-        //Debug.Log("spawn book");
+        Debug.Log("spawn book");
+        //stop spawn - spawn one only
+        isBookStop = true;
     }
 
     //spawn object
@@ -301,6 +305,4 @@ public class Spawn : MonoBehaviour
             item.GetComponent<Rigidbody2D>().drag = dragNum;
         }
     }
-
-
 }

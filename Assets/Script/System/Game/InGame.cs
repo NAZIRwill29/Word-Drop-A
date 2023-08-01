@@ -51,11 +51,13 @@ public class InGame : MonoBehaviour
     public float dragCoinOri, dragBookOri, increaseNumCoin, increaseNumBook;
     //challenge stage
     public bool isChallengeStage;
-    [Tooltip("only for challenge stage")] public GameObject[] spawnerChallengeObj;
+    [Tooltip("only for challenge stage")] public GameObject[] spawnerChallengeObj, waterChallengeObj, monsterChallengeObj;
     [Tooltip("only for challenge stage")] public Spawn[] spawnerChallenge;
+    //[Tooltip("only for challenge stage")] public Water[] waterChallenge;
+    //[Tooltip("only for challenge stage")] public Monster[] monsterChallenge;
     [Tooltip("only for challenge stage")] public GameObject[] objFallGroup;
-    private int spawnIndex;
-    [SerializeField] private float lastSpawnChange, timeSpawnChange = 10;
+    private int spawnIndex, monsterIndex, waterIndex;
+    [SerializeField] private float lastChallengeChange, timeChallengeChange = 10;
 
     void Start()
     {
@@ -63,7 +65,7 @@ public class InGame : MonoBehaviour
         GameManager.instance.gameMenuUi.ResetWordPointEvent();
         ResetAllSpawnNum();
         if (isBookSpawnOne)
-            bookSpawnTime = Random.Range(15, inGameUi.totalTime);
+            bookSpawnTime = Random.Range(20, inGameUi.totalTime);
         //Challenge MODE()
         if (isChallengeStage)
             spawn = spawnerChallenge[0];
@@ -102,39 +104,29 @@ public class InGame : MonoBehaviour
         {
             if (Time.time - lastIncNumTime > timeIncNum)
             {
-                //numDiff++;
-                //Debug.Log("inc diff x" + numDiff);
-                //Debug.Log("increase diff");
-                lastIncNumTime = Time.time;
-                //increase obj drop
-                spawn.IncreaseFreqSpeed();
-                //increase background run
-                if (backgroundManagement)
-                    backgroundManagement.IncreaseSpeedBackground();
-                //increase monster speed
-                if (monster)
-                    monster.IncreaseSpeed(0.0005f);
-                //increae water speed
-                if (water)
-                    water.IncreaseSpeed(0.0005f);
+                incDifficulty();
             }
             //Challenge MODE()
             if (!isChallengeStage)
                 return;
-            //make win and stop challenge
-            if (timeSpawnChange >= 1200)
+            // make win and stop challenge
+            if (timeChallengeChange >= 1400)
             {
                 if (!inGameUi.isRun)
+                    //TODO () - change to win challenge
                     GameManager.instance.player.Win(true);
                 else
                     GameManager.instance.player.Win(false);
             }
             else
             {
-                if (Time.time - lastSpawnChange > timeSpawnChange)
+                //for run mode only
+                if (!inGameUi.isRun)
+                    return;
+                if (Time.time - lastChallengeChange > timeChallengeChange)
                 {
-                    lastSpawnChange = Time.time;
-                    SetChallengeMode();
+                    lastChallengeChange = Time.time;
+                    ChangeItemInChallengeMode();
                 }
             }
         }
@@ -167,6 +159,26 @@ public class InGame : MonoBehaviour
     {
         lastIncNumTime = Time.time;
         spawn.ResetLastTimeSpawn();
+    }
+
+    //increase difficulty
+    private void incDifficulty()
+    {
+        //numDiff++;
+        //Debug.Log("inc diff x" + numDiff);
+        //Debug.Log("increase diff");
+        lastIncNumTime = Time.time;
+        //increase obj drop
+        spawn.IncreaseFreqSpeed();
+        //increase background run
+        if (backgroundManagement)
+            backgroundManagement.IncreaseSpeedBackground();
+        //increase monster speed
+        if (monster)
+            monster.IncreaseSpeed(0.0005f);
+        //increae water speed
+        if (water)
+            water.IncreaseSpeed(0.0005f);
     }
 
     public void BuildLadder()
@@ -204,21 +216,75 @@ public class InGame : MonoBehaviour
             groundManager.groundManagerAudioSource.volume = num;
     }
 
-    //set Challenge Mode
-    public void SetChallengeMode()
+    //Challenge MODE()
+    //change item in challengeMode
+    public void ChangeItemInChallengeMode()
+    {
+        ChangeSpawnInChallengeMode();
+        if (!inGameUi.isRun)
+            ChangeWaterInChallengeMode();
+        else
+            ChangeMonsterInChallengeMode();
+    }
+    //set spawn
+    private void ChangeSpawnInChallengeMode()
     {
         spawnIndex++;
         //change spawn is in inbound
         if (spawnIndex < spawnerChallengeObj.Length)
         {
+            //hide all spawn
             foreach (var item in spawnerChallengeObj)
             {
                 item.SetActive(false);
             }
+            //show obj fall gp
             objFallGroup[spawnIndex].SetActive(true);
+            //show desired spawn
             spawnerChallengeObj[spawnIndex].SetActive(true);
+            //change spawn assigned
             spawn = spawnerChallenge[spawnIndex];
-            timeSpawnChange += 20;
+            //timeSpawnChange += 20;
+        }
+        //make win
+        else
+        {
+            if (inGameUi.isRun)
+                return;
+            if (spawnIndex > 12)
+                GameManager.instance.player.Win(true);
+        }
+    }
+    //set water
+    private void ChangeWaterInChallengeMode()
+    {
+        waterIndex++;
+        //change water is in inbound
+        if (waterIndex < waterChallengeObj.Length)
+        {
+            //hide all water
+            foreach (var item in waterChallengeObj)
+            {
+                item.SetActive(false);
+            }
+            waterChallengeObj[waterIndex].SetActive(true);
+            //water = waterChallenge[waterIndex];
+        }
+    }
+    //set monster
+    private void ChangeMonsterInChallengeMode()
+    {
+        monsterIndex++;
+        //change monster is in inbound
+        if (monsterIndex < monsterChallengeObj.Length)
+        {
+            //hide all monster
+            foreach (var item in monsterChallengeObj)
+            {
+                item.SetActive(false);
+            }
+            monsterChallengeObj[monsterIndex].SetActive(true);
+            //monster = monsterChallenge[monsterIndex];
         }
     }
 }

@@ -243,7 +243,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4228933545075042094, guid: cb887a4e89fc08949b83c75c8c8c8cfc, type: 3}
       propertyPath: speed
-      value: 0.14
+      value: 0.15
       objectReference: {fileID: 0}
     - target: {fileID: 4228933545075042095, guid: cb887a4e89fc08949b83c75c8c8c8cfc, type: 3}
       propertyPath: m_Name
@@ -1835,8 +1835,8 @@ MonoBehaviour:
   isGround: 1
   isFence: 0
   isSlime: 0
-  ladderPt: 4
-  groundPt: 4
+  ladderPt: 8
+  groundPt: 8
   fencePt: 1
   slimePt: 2
   dangerDist: 0
@@ -1844,7 +1844,7 @@ MonoBehaviour:
   sceneName: Stage 7-2
   nextStageName: Stage 7-3
   nextStageMode: 0
-  isBookSpawnOne: 0
+  isBookSpawnOne: 1
   bookSpawnTime: 0
   isIncreaseDifficulty: 1
   playerPos: 0
@@ -1859,10 +1859,10 @@ MonoBehaviour:
   lastIncNumTime: 0
   lastCharTime: 0
   lastObsTime: 0
-  dragChar: 2.05
-  dragObs: 1.85
-  timeCharDuration: 0.45
-  timeObsDuration: 0.55
+  dragChar: 1.9
+  dragObs: 1.7
+  timeCharDuration: 0.43
+  timeObsDuration: 0.53
   timeBook: 0
   lastBookTime: 0
   lastCoinTime: 0
@@ -9494,7 +9494,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4443392488500488708, guid: eba322fba443ee948899f066fae6acb3, type: 3}
       propertyPath: timeLeft
-      value: 120
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4443392488500488708, guid: eba322fba443ee948899f066fae6acb3, type: 3}
       propertyPath: winSprite

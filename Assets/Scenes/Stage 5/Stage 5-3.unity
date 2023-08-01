@@ -1283,7 +1283,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2317353762410816063, guid: 16506171a357ed94ca92a897f2b3da85, type: 3}
       propertyPath: speed
-      value: 0.29
+      value: 0.295
       objectReference: {fileID: 0}
     - target: {fileID: 2317353762410816063, guid: 16506171a357ed94ca92a897f2b3da85, type: 3}
       propertyPath: isNoSlowDown
@@ -1694,8 +1694,8 @@ MonoBehaviour:
   isSlime: 1
   ladderPt: 1
   groundPt: 2
-  fencePt: 3
-  slimePt: 4
+  fencePt: 6
+  slimePt: 7
   dangerDist: 0
   currentStageNo: 15
   sceneName: Stage 5-3
@@ -1716,14 +1716,14 @@ MonoBehaviour:
   lastIncNumTime: 0
   lastCharTime: 0
   lastObsTime: 0
-  dragChar: 2.15
-  dragObs: 1.95
-  timeCharDuration: 0.5
-  timeObsDuration: 0.6
+  dragChar: 2
+  dragObs: 1.85
+  timeCharDuration: 0.48
+  timeObsDuration: 0.58
   timeBook: 0
   lastBookTime: 0
   lastCoinTime: 0
-  timeBookDuration: 125
+  timeBookDuration: 60
   timeCoinDuration: 15
   dragCoin: 1.75
   dragBook: 1.5
