@@ -46,7 +46,7 @@ public class GroundManager : MonoBehaviour
                 if (groundChallengeNo > 13)
                 {
                     groundChallengeNo = 0;
-                    inGame.ChangeItemInChallengeMode();
+                    inGame.ChangeDifficultyInChallengeMode();
                 }
             }
         }

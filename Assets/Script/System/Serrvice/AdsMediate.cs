@@ -171,10 +171,10 @@ public class AdsMediate : MonoBehaviour
                 GameManager.instance.Revive();
                 break;
             case "book":
-                GameManager.instance.GetBook();
+                GameManager.instance.GetItem(true, false);
                 break;
             case "coin":
-                GameManager.instance.GetCoin();
+                GameManager.instance.GetItem(false, true);
                 break;
             case "tip":
                 GameManager.instance.ShowTip();

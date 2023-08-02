@@ -264,9 +264,9 @@ public class Player : MonoBehaviour
             GameManager.instance.tutorial.Tutorial2Trigger(alphabetsStore.Count);
     }
 
-    public void ReceiveBook()
+    public void ReceiveBook(int num)
     {
-        AddBookNum(1);
+        AddBookNum(num);
     }
     public void ReceiveCoin(int coin)
     {

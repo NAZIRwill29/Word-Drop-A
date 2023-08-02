@@ -313,27 +313,55 @@ public class MainMenuUI : MonoBehaviour
     }
 
     //loading screen
-    public void ShowLoadingScreen(bool isShow)
+    public void ShowLoadingScreen(bool isShow, string sceneName)
     {
         if (isShow)
         {
-            // if (isLoadingScreenAnimate)
-            //     return;
-            // isLoadingScreenAnimate = true;
-            //change tip module randomly
-            int tipNo = Random.Range(1, 12);
-            tipModules.SetInteger("state", tipNo);
-            //show loading screen
-            loadingScreenAnim.SetInteger("state", 3);
+            switch (sceneName)
+            {
+                case "Stage 1-1":
+                    ShowLoadingScreenEvent(9);
+                    break;
+                case "Stage 1-2":
+                    ShowLoadingScreenEvent(3);
+                    break;
+                case "Stage 1-3":
+                    ShowLoadingScreenEvent(7);
+                    break;
+                case "Stage 2-1":
+                    ShowLoadingScreenEvent(8);
+                    break;
+                case "Stage 2-2":
+                    ShowLoadingScreenEvent(2);
+                    break;
+                case "Stage 2-3":
+                    ShowLoadingScreenEvent(1);
+                    break;
+                case "Stage 3-3":
+                    ShowLoadingScreenEvent(10);
+                    break;
+                default:
+                    //change tip module randomly
+                    int tipNo = Random.Range(1, 12);
+                    ShowLoadingScreenEvent(tipNo);
+                    break;
+            }
         }
         else
         {
-            // if (!isLoadingScreenAnimate)
-            //     return;
-            // isLoadingScreenAnimate = false;
-            tipModules.SetInteger("state", 0);
-            loadingScreenAnim.SetInteger("state", 0);
+            ShowLoadingScreenEvent(0);
         }
+    }
+    private void ShowLoadingScreenEvent(int tipNo)
+    {
+        //change tip module
+        tipModules.SetInteger("state", tipNo);
+        if (tipNo == 0)
+            //show loading screen
+            loadingScreenAnim.SetInteger("state", 0);
+        else
+            //hide loading screen
+            loadingScreenAnim.SetInteger("state", 3);
     }
 
     //show tip screen

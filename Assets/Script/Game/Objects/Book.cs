@@ -25,7 +25,7 @@ public class Book : DropObject
             {
                 //make trigger once only
                 isTouched = true;
-                coll.SendMessage("ReceiveBook");
+                coll.SendMessage("ReceiveBook", 1);
                 //put to birth location
                 transform.position = originalPos;
             }

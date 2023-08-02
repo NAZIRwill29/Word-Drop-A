@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
     public LoadingScene loadingScene;
     public MainMenuUI mainMenuUI;
     public GameMenuUi gameMenuUi;
+    public PopUpUi popUpUi;
     public GameSettings gameSettings;
     public GameObject dontDestroyGameObject;
     public PlayerData playerData;
@@ -54,6 +55,8 @@ public class GameManager : MonoBehaviour
     public bool isPremiumPlan, isBookAdsUsed = true, isSuccesLogin, isSuccessLoadCloud;
     public List<int> skinIndexBought;
     public float playTime;
+    private int[] getBookNum = { 0, 1, 1, 1, 1, 1, 2, 2, 2, 3 };
+    private int[] getCoinNum = { 0, 3, 3, 3, 3, 5, 5, 5, 7, 7, 10 };
 
     //awake
     void Awake()
@@ -165,7 +168,7 @@ public class GameManager : MonoBehaviour
     }
     private IEnumerator InBackToHome()
     {
-        loadingScene.LoadLoadingScene();
+        loadingScene.LoadLoadingScene("");
         adsMediate.LoadInterstitial();
         yield return StartCoroutine(InBackToHomeEvent());
         yield return StartCoroutine(mainMenuUI.ShowAnim());
@@ -182,7 +185,7 @@ public class GameManager : MonoBehaviour
     public void StartGame(string name, int mode)
     {
         mainMenuUI.blackScreen2.SetActive(true);
-        loadingScene.LoadLoadingScene();
+        loadingScene.LoadLoadingScene(name);
         adsMediate.LoadInterstitial();
         StartCoroutine(InStartGame(name, mode));
         Debug.Log("start game");
@@ -630,27 +633,53 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    //DELETE ()
+    public void GetPopUp()
+    {
+        GetItem(true, true);
+    }
+    //get item
+    public void GetItem(bool isBook, bool isCoin)
+    {
+        int bookNum = 0, coinNum = 0;
+        if (isBook)
+            bookNum = GetBook();
+        if (isCoin)
+            coinNum = GetCoin();
+        //show get pop up
+        popUpUi.GetItemPopUp(isBook, isCoin, bookNum, coinNum);
+    }
     //get book
-    public void GetBook()
+    private int GetBook()
     {
         isBookAdsUsed = true;
-        player.ReceiveBook();
+        int indexRB = Random.Range(0, getBookNum.Length - 1);
+        player.ReceiveBook(getBookNum[indexRB]);
         SaveState(true, false);
         if (inGame)
             gameMenuUi.gameMenuUiAnim.SetTrigger("win");
         else
             mainMenuUI.PlayerInfoWindow();
+        //show get pop up
+        //popUpUi.GetItemPopUp(true, getBookNum[indexRB]);
+        return getBookNum[indexRB];
     }
     //get coin
-    public void GetCoin()
+    private int GetCoin()
     {
         isBookAdsUsed = true;
-        player.ReceiveCoin(3);
+        int index1 = Random.Range(0, getCoinNum.Length - 1);
+        int index2 = Random.Range(0, getCoinNum.Length - 1);
+        int coinNum = Random.Range(index1, index2);
+        player.ReceiveCoin(coinNum);
         SaveState(true, false);
         if (inGame)
             gameMenuUi.gameMenuUiAnim.SetTrigger("win");
         else
             mainMenuUI.PlayerInfoWindow();
+        //show get pop up
+        //popUpUi.GetItemPopUp(false, num);
+        return coinNum;
     }
 
     //request tip ads

@@ -698,6 +698,10 @@ public class GameMenuUi : MonoBehaviour
         //ladder
         if (GameManager.instance.inGame.isLadder)
         {
+            //Challenge MODE ()
+            //exclude for ladder
+            if (GameManager.instance.inGame.isChallengeStage)
+                return;
             //if ladders complete
             if (!GameManager.instance.inGame.ladders.isCompleted)
             {
@@ -1016,7 +1020,7 @@ public class GameMenuUi : MonoBehaviour
     //set challenge mode
     public void SetChallengeMode()
     {
-        GameManager.instance.inGame.ChangeItemInChallengeMode();
+        GameManager.instance.inGame.ChangeDifficultyInChallengeMode();
     }
 
     //play sound -------------------------------------------

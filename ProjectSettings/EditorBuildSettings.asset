@@ -83,6 +83,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Stage 7/Stage 7-4.unity
     guid: 37575a1408f64b545b204981a0f12ca5
+  - enabled: 1
+    path: Assets/Scenes/Challenge/Challenge Drown.unity
+    guid: 11100c1f987dd7e4595e38404cce83c4
+  - enabled: 1
+    path: Assets/Scenes/Challenge/Challenge Run.unity
+    guid: 2eefbd985edc1dc49b7e9bbebf2aa7fc
   m_configObjects:
     com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: 1eb124fd50014704589c0a97f0c2541e, type: 2}
     com.unity.adaptiveperformance.samsung.android.provider_settings: {fileID: 11400000, guid: 27d4e75300a5f784fb7d7ba1b1178e55, type: 2}

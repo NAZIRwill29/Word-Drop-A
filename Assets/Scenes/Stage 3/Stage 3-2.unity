@@ -1425,6 +1425,7 @@ MonoBehaviour:
   sceneName: Stage 3-2
   nextStageName: Stage 3-3
   nextStageMode: 0
+  desiredTipNo: 0
   isBookSpawnOne: 1
   bookSpawnTime: 0
   isIncreaseDifficulty: 0
@@ -1463,10 +1464,12 @@ MonoBehaviour:
   increaseNumBook: 0
   isChallengeStage: 0
   spawnerChallengeObj: []
+  waterChallengeObj: []
+  monsterChallengeObj: []
   spawnerChallenge: []
   objFallGroup: []
-  lastSpawnChange: 0
-  timeSpawnChange: 30
+  lastChallengeChange: 0
+  timeChallengeChange: 10
 --- !u!4 &385399426 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2969480161401683158, guid: 70025f7b9517ce54486e61de3f353fb9, type: 3}
@@ -6797,6 +6800,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb994893848aa5a46bb488a2958c4e6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inGame: {fileID: 0}
   arrGrounds:
   - {fileID: 5368751593822120822}
   - {fileID: 589177770}
@@ -8809,7 +8813,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4443392488500488708, guid: eba322fba443ee948899f066fae6acb3, type: 3}
       propertyPath: timeLeft
-      value: 0
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 4443392488500488708, guid: eba322fba443ee948899f066fae6acb3, type: 3}
       propertyPath: winSprite

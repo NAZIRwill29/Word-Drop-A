@@ -11,11 +11,11 @@ public class LoadingScene : MonoBehaviour
     [SerializeField] private StartPlay startPlay;
     [SerializeField] private Image LoadingBarFill;
     public float speed;
-    public void LoadLoadingScene()
+    public void LoadLoadingScene(string sceneName)
     {
         //Debug.Log("load scene event");
         //StartCoroutine(LoadSceneAsync(sceneId));
-        StartCoroutine(LoadSceneEvent());
+        StartCoroutine(LoadSceneEvent(sceneName));
     }
 
     // IEnumerator LoadSceneAsync(int sceneId)
@@ -32,10 +32,10 @@ public class LoadingScene : MonoBehaviour
     //         yield return null;
     //     }
     // }
-    private IEnumerator LoadSceneEvent()
+    private IEnumerator LoadSceneEvent(string sceneName)
     {
         //Debug.Log("load screen start");
-        mainMenuUI.ShowLoadingScreen(true);
+        mainMenuUI.ShowLoadingScreen(true, sceneName);
         //turn off music
         GameManager.instance.gameSettings.TurnOnMusicDueLoading(false);
         yield return new WaitForSeconds(5);
@@ -47,7 +47,7 @@ public class LoadingScene : MonoBehaviour
         // show inGameUi - only if has
         if (GameManager.instance.inGameUi)
             GameManager.instance.inGameUi.SetupInGameUi(true);
-        mainMenuUI.ShowLoadingScreen(false);
+        mainMenuUI.ShowLoadingScreen(false, sceneName);
         //turn on music
         GameManager.instance.gameSettings.TurnOnMusicDueLoading(true);
     }

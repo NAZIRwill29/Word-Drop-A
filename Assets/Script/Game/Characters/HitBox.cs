@@ -28,10 +28,10 @@ public class HitBox : MonoBehaviour
             GameManager.instance.player.ReceiveChar(abc);
 
     }
-    public void ReceiveBook()
+    public void ReceiveBook(int num)
     {
         if (parentType == 0)
-            GameManager.instance.player.ReceiveBook();
+            GameManager.instance.player.ReceiveBook(num);
     }
     public void ReceiveCoin(int coin)
     {

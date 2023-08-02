@@ -30,6 +30,7 @@ public class InGame : MonoBehaviour
     //next stage detail
     public string nextStageName;
     public int nextStageMode;
+    public int desiredTipNo;
     //book spawn
     public bool isBookSpawnOne;
     public float bookSpawnTime;
@@ -51,6 +52,7 @@ public class InGame : MonoBehaviour
     public float dragCoinOri, dragBookOri, increaseNumCoin, increaseNumBook;
     //challenge stage
     public bool isChallengeStage;
+    private int diffChallengeChange;
     [Tooltip("only for challenge stage")] public GameObject[] spawnerChallengeObj, waterChallengeObj, monsterChallengeObj;
     [Tooltip("only for challenge stage")] public Spawn[] spawnerChallenge;
     //[Tooltip("only for challenge stage")] public Water[] waterChallenge;
@@ -126,7 +128,7 @@ public class InGame : MonoBehaviour
                 if (Time.time - lastChallengeChange > timeChallengeChange)
                 {
                     lastChallengeChange = Time.time;
-                    ChangeItemInChallengeMode();
+                    ChangeDifficultyInChallengeMode();
                 }
             }
         }
@@ -217,8 +219,21 @@ public class InGame : MonoBehaviour
     }
 
     //Challenge MODE()
+    //change difficulty
+    public void ChangeDifficultyInChallengeMode()
+    {
+        diffChallengeChange++;
+        if (diffChallengeChange % 2 == 0)
+        {
+            ladderPt++;
+            groundPt++;
+            fencePt++;
+            slimePt++;
+        }
+        ChangeItemInChallengeMode();
+    }
     //change item in challengeMode
-    public void ChangeItemInChallengeMode()
+    private void ChangeItemInChallengeMode()
     {
         ChangeSpawnInChallengeMode();
         if (!inGameUi.isRun)
