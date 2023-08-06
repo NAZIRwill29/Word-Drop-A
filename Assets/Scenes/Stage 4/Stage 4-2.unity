@@ -1929,11 +1929,15 @@ MonoBehaviour:
   increaseNumCoin: 0
   increaseNumBook: 0
   isChallengeStage: 0
+  spawnerChallengeGpObj: {fileID: 0}
   spawnerChallengeObj: []
   waterChallengeObj: []
   monsterChallengeObj: []
   spawnerChallenge: []
   objFallGroup: []
+  spawnIndex: 0
+  monsterIndex: 0
+  waterIndex: 0
   lastChallengeChange: 0
   timeChallengeChange: 10
 --- !u!4 &385399426 stripped
@@ -2102,9 +2106,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 1
+  m_UiScaleMode: 0
   m_ReferencePixelsPerUnit: 100
-  m_ScaleFactor: 1
+  m_ScaleFactor: 1.5
   m_ReferenceResolution: {x: 650, y: 900}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
@@ -8085,7 +8089,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb994893848aa5a46bb488a2958c4e6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inGame: {fileID: 0}
+  inGame: {fileID: 363549339}
   arrGrounds:
   - {fileID: 1651539944}
   - {fileID: 324617994}
@@ -8108,6 +8112,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: c9b900879fa171d4eb821de6ee053020, type: 3}
   riseNum: 0.505
   currentActiveGroundNo: 0
+  groundCount: 0
 --- !u!82 &1876517266
 AudioSource:
   m_ObjectHideFlags: 0

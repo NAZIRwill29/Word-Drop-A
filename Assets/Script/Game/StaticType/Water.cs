@@ -27,7 +27,7 @@ public class Water : MonoBehaviour
     //use after player revive
     public void AfterRevive()
     {
-        transform.position -= new Vector3(0, 6, 0);
+        transform.position -= new Vector3(0, 5.75f, 0);
     }
 
     //water effect when touch player - lifeline 1,2,3

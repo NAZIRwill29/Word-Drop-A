@@ -91,7 +91,7 @@ public class Monster : MonoBehaviour
         //calm down monster
         hpChange = 2;
         SetMonsterState();
-        transform.position -= new Vector3(0, 6, 0);
+        transform.position -= new Vector3(0, 5.75f, 0);
     }
 
     //monster damage by thing - push backward

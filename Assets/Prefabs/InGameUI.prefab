@@ -539,10 +539,10 @@ RectTransform:
   m_Father: {fileID: 4443392488500488707}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: -5, y: -41.000122}
-  m_SizeDelta: {x: -60, y: 40}
+  m_SizeDelta: {x: 660, y: 40}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &397256774507792302
 CanvasRenderer:
@@ -767,7 +767,6 @@ MonoBehaviour:
   endLine: {fileID: 2950749135344370833}
   playerLine: {fileID: 5363460740693435188}
   dangerText: {fileID: 4149413544101175858}
-  deathSprite: []
   winSprite: {fileID: 0}
 --- !u!225 &4443392488367841603
 CanvasGroup:
@@ -814,10 +813,10 @@ RectTransform:
   m_Father: {fileID: 4443392488500488707}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: -150, y: -31.21997}
-  m_SizeDelta: {x: -350, y: 60}
+  m_SizeDelta: {x: 370, y: 60}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &4443392489956021382
 CanvasRenderer:

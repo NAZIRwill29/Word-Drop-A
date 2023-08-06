@@ -1635,8 +1635,10 @@ MonoBehaviour:
   slimePt: 5
   dangerDist: 0
   currentStageNo: 23
+  sceneName: 
   nextStageName: END
   nextStageMode: 1
+  desiredTipNo: 0
   isBookSpawnOne: 0
   bookSpawnTime: 0
   isIncreaseDifficulty: 1
@@ -1650,6 +1652,41 @@ MonoBehaviour:
   - {fileID: -3190315, guid: 6a281e2b0805b7043aa218b251f331c6, type: 3}
   timeIncNum: 5
   lastIncNumTime: 0
+  lastCharTime: 0
+  lastObsTime: 0
+  dragChar: 0
+  dragObs: 0
+  timeCharDuration: 0
+  timeObsDuration: 0
+  timeBook: 0
+  lastBookTime: 0
+  lastCoinTime: 0
+  timeBookDuration: 25
+  timeCoinDuration: 15
+  dragCoin: 1.75
+  dragBook: 1.5
+  timeCharDurationOri: 0
+  timeObsDurationOri: 0
+  dragCharOri: 0
+  dragObsOri: 0
+  increaseNum: 0
+  increaseNumObs: 0
+  dragCoinOri: 0
+  dragBookOri: 0
+  increaseNumCoin: 0
+  increaseNumBook: 0
+  isChallengeStage: 0
+  spawnerChallengeGpObj: {fileID: 0}
+  spawnerChallengeObj: []
+  waterChallengeObj: []
+  monsterChallengeObj: []
+  spawnerChallenge: []
+  objFallGroup: []
+  spawnIndex: 0
+  monsterIndex: 0
+  waterIndex: 0
+  lastChallengeChange: 0
+  timeChallengeChange: 10
 --- !u!1001 &408667085
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1811,9 +1848,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 1
+  m_UiScaleMode: 0
   m_ReferencePixelsPerUnit: 100
-  m_ScaleFactor: 1
+  m_ScaleFactor: 1.5
   m_ReferenceResolution: {x: 650, y: 900}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0

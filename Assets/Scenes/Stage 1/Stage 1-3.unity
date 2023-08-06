@@ -1818,6 +1818,7 @@ MonoBehaviour:
   sceneName: Stage 1-3
   nextStageName: Stage 2-1
   nextStageMode: 1
+  desiredTipNo: 0
   isBookSpawnOne: 0
   bookSpawnTime: 0
   isIncreaseDifficulty: 0
@@ -1855,11 +1856,17 @@ MonoBehaviour:
   increaseNumCoin: 0
   increaseNumBook: 0
   isChallengeStage: 0
+  spawnerChallengeGpObj: {fileID: 0}
   spawnerChallengeObj: []
+  waterChallengeObj: []
+  monsterChallengeObj: []
   spawnerChallenge: []
   objFallGroup: []
-  lastSpawnChange: 0
-  timeSpawnChange: 30
+  spawnIndex: 0
+  monsterIndex: 0
+  waterIndex: 0
+  lastChallengeChange: 0
+  timeChallengeChange: 10
 --- !u!1001 &365540438
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2052,9 +2059,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 1
+  m_UiScaleMode: 0
   m_ReferencePixelsPerUnit: 100
-  m_ScaleFactor: 1
+  m_ScaleFactor: 1.5
   m_ReferenceResolution: {x: 650, y: 900}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
@@ -8634,6 +8641,14 @@ PrefabInstance:
     - target: {fileID: 4443392489956021380, guid: eba322fba443ee948899f066fae6acb3, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4443392489956021385, guid: eba322fba443ee948899f066fae6acb3, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -31.21875
+      objectReference: {fileID: 0}
+    - target: {fileID: 8054909411663229662, guid: eba322fba443ee948899f066fae6acb3, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -41
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eba322fba443ee948899f066fae6acb3, type: 3}

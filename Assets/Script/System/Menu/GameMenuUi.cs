@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 public class GameMenuUi : MonoBehaviour
 {
@@ -47,6 +48,8 @@ public class GameMenuUi : MonoBehaviour
     [SerializeField] private TextMeshProUGUI coinText;
     [SerializeField] private TextAsset wordList;
     [SerializeField] private Image uiFill;
+    //death challenge
+    [SerializeField] private TextMeshProUGUI timeChText, scoreText;
     //[SerializeField] private Text uiText;
     private List<string> words;
     private string letterCombine;
@@ -145,7 +148,7 @@ public class GameMenuUi : MonoBehaviour
         }
     }
     //set build button active event
-    private void SetBuildBtnsActive()
+    public void SetBuildBtnsActive()
     {
         SetBuildBtnActive(0, GameManager.instance.inGame.isLadder, GameManager.instance.inGame.ladderPt);
         SetBuildBtnActive(1, GameManager.instance.inGame.isGround, GameManager.instance.inGame.groundPt);
@@ -701,9 +704,12 @@ public class GameMenuUi : MonoBehaviour
             //Challenge MODE ()
             //exclude for ladder
             if (GameManager.instance.inGame.isChallengeStage)
-                return;
+            {
+                SetBuildBtninteractable(0, false);
+                completeLadderImg.SetActive(false);
+            }
             //if ladders complete
-            if (!GameManager.instance.inGame.ladders.isCompleted)
+            else if (!GameManager.instance.inGame.ladders.isCompleted)
             {
                 //check if word point more than point needed
                 SetBuildBtninteractable(0, wordPoint >= GameManager.instance.inGame.ladderPt);
@@ -784,6 +790,23 @@ public class GameMenuUi : MonoBehaviour
             // }
             gameMenuUiAnim.SetTrigger("realDeath");
         }
+    }
+
+    //Challenge MODE 
+    public void DeathChallenge(bool isRun)
+    {
+        //convert float seconds to timespan
+        float timeNum = GameManager.instance.inGameUi.timeLeft;
+        TimeSpan time = TimeSpan.FromSeconds(timeNum);
+        if (timeNum < 3600)
+            //set time format - min:sec
+            timeChText.text = "time : " + time.ToString("mm':'ss");
+        else
+            //set time format - hour:min:sec
+            timeChText.text = "time : " + time.ToString("hh':'mm':'ss");
+        if (!isRun)
+            scoreText.text = "build: " + GameManager.instance.inGame.groundManager.groundCount;
+        gameMenuUiAnim.SetTrigger("dieChallenge");
     }
 
     public void Revive()

@@ -9,7 +9,7 @@ public class Spawn : MonoBehaviour
     private int index, charIndex, obsIndex, bookIndex, coinIndex;
     private float posX;
     //char
-    public bool isSpawnStop, isTutorialMode, isBookStop;
+    public bool isSpawnStop, isTutorialMode, isBookStop, isStopFunc;
     //alphabet list
     private char[] alphabets =
     {
@@ -244,13 +244,13 @@ public class Spawn : MonoBehaviour
         isSpawnStop = isStop;
     }
 
-    public void IncreaseFreqSpeed()
+    public void IncreaseFreqSpeed(float extraIncrease)
     {
         //Debug.Log("inc obj speed");
-        inGame.increaseNum += 0.003f;
-        inGame.increaseNumObs += 0.004f;
-        inGame.increaseNumCoin += 0.005f;
-        inGame.increaseNumBook += 0.006f;
+        inGame.increaseNum += 0.003f + extraIncrease;
+        inGame.increaseNumObs += 0.004f + extraIncrease;
+        inGame.increaseNumCoin += 0.005f + extraIncrease;
+        inGame.increaseNumBook += 0.006f + extraIncrease;
         //Debug.Log("increase num = " + increaseNum);
         //Debug.Log("dragChar = " + dragChar);
         ChangeFreqSpeedChar(inGame.dragChar - inGame.increaseNum, inGame.timeCharDuration - inGame.increaseNum / 2);

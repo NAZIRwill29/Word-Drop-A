@@ -264,6 +264,12 @@ public class GameManager : MonoBehaviour
         gameMenuUi.Death(isReal);
         PauseGame(true);
     }
+    //Challenge MODE ()
+    public void DeathChallenge()
+    {
+        gameMenuUi.DeathChallenge(inGameUi.isRun);
+        PauseGame(true);
+    }
 
     //continue after death
     public void ContinueAfterDeath(bool isAds)

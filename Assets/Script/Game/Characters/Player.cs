@@ -328,12 +328,20 @@ public class Player : MonoBehaviour
         ChangeIsHasDie(true);
         //freeze all - pause game - off rigidbody player
         GameMode(2);
-        //make chance after die once only
-        playerData.dieNum++;
-        if (playerData.dieNum < 2)
-            GameManager.instance.Death(false);
+        //Challenge MODE ()
+        if (GameManager.instance.inGame.isChallengeStage)
+        {
+            GameManager.instance.DeathChallenge();
+        }
         else
-            GameManager.instance.Death(true);
+        {
+            //make chance after die once only
+            playerData.dieNum++;
+            if (playerData.dieNum < 2)
+                GameManager.instance.Death(false);
+            else
+                GameManager.instance.Death(true);
+        }
     }
 
     //Lifeline effect - call when water touch lifeline

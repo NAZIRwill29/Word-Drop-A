@@ -1690,6 +1690,7 @@ MonoBehaviour:
   sceneName: Tutorial
   nextStageName: Stage 1-1
   nextStageMode: 0
+  desiredTipNo: 0
   isBookSpawnOne: 1
   bookSpawnTime: 0
   isIncreaseDifficulty: 0
@@ -1727,11 +1728,17 @@ MonoBehaviour:
   increaseNumCoin: 0
   increaseNumBook: 0
   isChallengeStage: 0
+  spawnerChallengeGpObj: {fileID: 0}
   spawnerChallengeObj: []
+  waterChallengeObj: []
+  monsterChallengeObj: []
   spawnerChallenge: []
   objFallGroup: []
-  lastSpawnChange: 0
-  timeSpawnChange: 30
+  spawnIndex: 0
+  monsterIndex: 0
+  waterIndex: 0
+  lastChallengeChange: 0
+  timeChallengeChange: 10
 --- !u!4 &385399426 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2969480161401683158, guid: 70025f7b9517ce54486e61de3f353fb9, type: 3}
@@ -1870,9 +1877,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 1
+  m_UiScaleMode: 0
   m_ReferencePixelsPerUnit: 100
-  m_ScaleFactor: 1
+  m_ScaleFactor: 1.5
   m_ReferenceResolution: {x: 650, y: 900}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
@@ -7573,6 +7580,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb994893848aa5a46bb488a2958c4e6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inGame: {fileID: 363549339}
   arrGrounds:
   - {fileID: 907315511}
   - {fileID: 2127107891}
@@ -7595,6 +7603,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: d9419ba0bfac1e84a95418ac5851caf6, type: 3}
   riseNum: 0.505
   currentActiveGroundNo: 0
+  groundCount: 0
 --- !u!82 &1876517266
 AudioSource:
   m_ObjectHideFlags: 0

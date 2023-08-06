@@ -15,7 +15,7 @@ public class InGameUi : MonoBehaviour
     public bool isTimeCountDown, isTimeScore, isRun;
     private bool isCanStart;
     [Tooltip("time for game to finish")]
-    [SerializeField] private float timeLeft = 300;
+    public float timeLeft = 300;
     //Run type
     [SerializeField] private float totalRunLength, currentRunLength;
     public float totalTime;

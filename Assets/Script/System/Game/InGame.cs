@@ -53,12 +53,13 @@ public class InGame : MonoBehaviour
     //challenge stage
     public bool isChallengeStage;
     private int diffChallengeChange;
+    [Tooltip("only for challenge stage")] public GameObject spawnerChallengeGpObj;
     [Tooltip("only for challenge stage")] public GameObject[] spawnerChallengeObj, waterChallengeObj, monsterChallengeObj;
     [Tooltip("only for challenge stage")] public Spawn[] spawnerChallenge;
     //[Tooltip("only for challenge stage")] public Water[] waterChallenge;
     //[Tooltip("only for challenge stage")] public Monster[] monsterChallenge;
     [Tooltip("only for challenge stage")] public GameObject[] objFallGroup;
-    private int spawnIndex, monsterIndex, waterIndex;
+    public int spawnIndex, monsterIndex, waterIndex;
     [SerializeField] private float lastChallengeChange, timeChallengeChange = 10;
 
     void Start()
@@ -106,7 +107,7 @@ public class InGame : MonoBehaviour
         {
             if (Time.time - lastIncNumTime > timeIncNum)
             {
-                incDifficulty();
+                incDifficulty(0);
             }
             //Challenge MODE()
             if (!isChallengeStage)
@@ -115,7 +116,6 @@ public class InGame : MonoBehaviour
             if (timeChallengeChange >= 1400)
             {
                 if (!inGameUi.isRun)
-                    //TODO () - change to win challenge
                     GameManager.instance.player.Win(true);
                 else
                     GameManager.instance.player.Win(false);
@@ -142,6 +142,21 @@ public class InGame : MonoBehaviour
         spawn.FreezeAllObjects(isPause);
         if (backgroundManagement)
             backgroundManagement.FreezeBackgrounds(isPause);
+        //Challenge MODE ()
+        if (!isChallengeStage)
+            return;
+        //&& spawnIndex >= (spawnerChallengeObj.Length - 1)
+        if (spawnIndex < 1)
+            return;
+        if (spawnIndex >= (spawnerChallengeObj.Length - 1))
+        {
+            Debug.Log("stop spawn chg");
+            return;
+        }
+        if (spawnerChallenge[spawnIndex - 1].isStopFunc)
+            return;
+        if (spawnerChallenge[spawnIndex - 1].isSpawnStop)
+            spawnerChallenge[spawnIndex - 1].FreezeAllObjects(isPause);
     }
 
     //call when start stage play
@@ -164,23 +179,23 @@ public class InGame : MonoBehaviour
     }
 
     //increase difficulty
-    private void incDifficulty()
+    private void incDifficulty(float extraIncrease)
     {
         //numDiff++;
         //Debug.Log("inc diff x" + numDiff);
         //Debug.Log("increase diff");
         lastIncNumTime = Time.time;
         //increase obj drop
-        spawn.IncreaseFreqSpeed();
+        spawn.IncreaseFreqSpeed(extraIncrease * 7.5f);
         //increase background run
         if (backgroundManagement)
             backgroundManagement.IncreaseSpeedBackground();
         //increase monster speed
         if (monster)
-            monster.IncreaseSpeed(0.0005f);
+            monster.IncreaseSpeed(0.0005f + extraIncrease);
         //increae water speed
         if (water)
-            water.IncreaseSpeed(0.0005f);
+            water.IncreaseSpeed(0.0005f + extraIncrease);
     }
 
     public void BuildLadder()
@@ -223,35 +238,54 @@ public class InGame : MonoBehaviour
     public void ChangeDifficultyInChallengeMode()
     {
         diffChallengeChange++;
+        //make change 2 time
         if (diffChallengeChange % 2 == 0)
         {
             ladderPt++;
             groundPt++;
             fencePt++;
             slimePt++;
+            GameManager.instance.gameMenuUi.SetBuildBtnsActive();
         }
-        ChangeItemInChallengeMode();
-    }
-    //change item in challengeMode
-    private void ChangeItemInChallengeMode()
-    {
         ChangeSpawnInChallengeMode();
+        //make change 3 time
+        if (diffChallengeChange % 3 != 0)
+            return;
         if (!inGameUi.isRun)
             ChangeWaterInChallengeMode();
         else
             ChangeMonsterInChallengeMode();
     }
+    //change item in challengeMode
+    // private void ChangeItemInChallengeMode()
+    // {
+    //     ChangeSpawnInChallengeMode();
+    // }
     //set spawn
     private void ChangeSpawnInChallengeMode()
     {
         spawnIndex++;
+        //extra increase difficulty
+        incDifficulty(0.01f);
         //change spawn is in inbound
         if (spawnIndex < spawnerChallengeObj.Length)
         {
-            //hide all spawn
-            foreach (var item in spawnerChallengeObj)
+            //hide all spawn except previous and new
+            for (int i = 0; i < objFallGroup.Length; i++)
             {
-                item.SetActive(false);
+                if (i != (spawnIndex - 1))
+                {
+                    spawnerChallengeObj[i].SetActive(false);
+                    objFallGroup[i].SetActive(false);
+                }
+                else
+                {
+                    //unfreeze prev spawn
+                    //spawnerChallenge[i].FreezeAllObjects(false);
+                    //stop spawn for prev spawner
+                    spawnerChallenge[i].StopSpawn(true);
+                    StartCoroutine(DelayHideSpawnInChallengeMode(i));
+                }
             }
             //show obj fall gp
             objFallGroup[spawnIndex].SetActive(true);
@@ -259,9 +293,8 @@ public class InGame : MonoBehaviour
             spawnerChallengeObj[spawnIndex].SetActive(true);
             //change spawn assigned
             spawn = spawnerChallenge[spawnIndex];
-            //timeSpawnChange += 20;
         }
-        //make win
+        //make win for drown only
         else
         {
             if (inGameUi.isRun)
@@ -269,6 +302,14 @@ public class InGame : MonoBehaviour
             if (spawnIndex > 12)
                 GameManager.instance.player.Win(true);
         }
+    }
+    //hide spawner
+    private IEnumerator DelayHideSpawnInChallengeMode(int num)
+    {
+        yield return new WaitForSeconds(10f);
+        spawnerChallenge[num].isStopFunc = true;
+        spawnerChallengeObj[num].SetActive(false);
+        objFallGroup[num].SetActive(false);
     }
     //set water
     private void ChangeWaterInChallengeMode()
