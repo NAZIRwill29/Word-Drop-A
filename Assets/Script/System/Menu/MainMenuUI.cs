@@ -260,6 +260,20 @@ public class MainMenuUI : MonoBehaviour
         SoundBtnOff.SetActive(!isSoundOn);
     }
 
+    //email support
+    //USED () - in email support btn
+    public void EmailSupportBtn(string emailName)
+    {
+        GameManager.instance.connectBrowser.EmailSupportUrl(emailName);
+    }
+
+    //email review
+    //USED () - in review btn
+    public void EmailReviewBtn(string emailName)
+    {
+        GameManager.instance.connectBrowser.EamilReviewUrl(emailName);
+    }
+
     //delete user account
     //USED () - in deleteBtn
     public void RequestDeleteAccount()
@@ -383,6 +397,13 @@ public class MainMenuUI : MonoBehaviour
     public void UnlockFullStage()
     {
         GameManager.instance.passStageNo = 24;
+    }
+
+    //rate review btn
+    //USED () - in rate btn
+    public void RateBtn()
+    {
+        GameManager.instance.connectBrowser.OpenUrl("");
     }
 
     //play sound -------------------------------------------

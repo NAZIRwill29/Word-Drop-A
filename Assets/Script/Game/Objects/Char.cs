@@ -7,6 +7,8 @@ public class Char : DropObject
     public char alphabet;
     [SerializeField] private SpriteRenderer charSR;
     [SerializeField] private GameObject effect;
+    [Tooltip("reverse, blood, shield, rollette")]
+    [SerializeField] private int reverseCharType;
     public void OnTriggerEnter2D(Collider2D coll)
     {
         if (GameManager.instance.isPauseGame)
@@ -43,6 +45,7 @@ public class Char : DropObject
     {
         alphabet = abc;
         //Debug.Log(abc + "char index = " + (int)abc);
+        //normal char
         if (!isReverseObj)
         {
             charSR.sprite = GameManager.instance.alphabetSprite[(int)abc - 65];
@@ -51,7 +54,23 @@ public class Char : DropObject
         else
         {
             //for reserve char
-            charSR.sprite = GameManager.instance.reverseAlphabetSprite[(int)abc - 65];
+            switch (reverseCharType)
+            {
+                //normal reverse
+                case 0:
+                    charSR.sprite = GameManager.instance.reverseAlphabetSprite[(int)abc - 65];
+                    break;
+                //blood
+                case 1:
+                    charSR.sprite = GameManager.instance.bloodAlphabetSprite[(int)abc - 65];
+                    break;
+                //shield
+                case 2:
+                    charSR.sprite = GameManager.instance.shieldAlphabetSprite[(int)abc - 65];
+                    break;
+                default:
+                    break;
+            }
             effect.SetActive(true);
         }
     }

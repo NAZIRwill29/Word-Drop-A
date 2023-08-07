@@ -53,7 +53,7 @@ public class GroundManager : MonoBehaviour
             {
                 groundCount++;
                 groundChallengeNo++;
-                if (groundChallengeNo > 13)
+                if (groundChallengeNo > 19)
                 {
                     groundChallengeNo = 0;
                     inGame.ChangeDifficultyInChallengeMode();
