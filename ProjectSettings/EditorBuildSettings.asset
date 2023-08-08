@@ -84,6 +84,12 @@ EditorBuildSettings:
     path: Assets/Scenes/Stage 7/Stage 7-4.unity
     guid: 37575a1408f64b545b204981a0f12ca5
   - enabled: 1
+    path: Assets/Scenes/Stage 8/Stage 8-1.unity
+    guid: 70875ab2a429e9c4c85d197cd54ae7f4
+  - enabled: 1
+    path: Assets/Scenes/Stage 8/Stage 8-3.unity
+    guid: 4ba67239f68060346840e7c04dacc4a5
+  - enabled: 1
     path: Assets/Scenes/Challenge/Challenge Drown.unity
     guid: 11100c1f987dd7e4595e38404cce83c4
   - enabled: 1

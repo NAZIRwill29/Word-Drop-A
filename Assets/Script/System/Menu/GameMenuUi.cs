@@ -48,6 +48,14 @@ public class GameMenuUi : MonoBehaviour
     [SerializeField] private TextMeshProUGUI coinText;
     [SerializeField] private TextAsset wordList;
     [SerializeField] private Image uiFill;
+    //status
+    [SerializeField] private Image statusInfoImg, statusActionImg;
+    //  0
+    //doubleEarn, 
+    [SerializeField] private Sprite[] statusSprite;
+    //shield earn
+    [SerializeField] private Button shieldBtn;
+    [SerializeField] private TextMeshProUGUI shieldText;
     //death challenge
     [SerializeField] private TextMeshProUGUI timeChText, scoreText;
     //[SerializeField] private Text uiText;
@@ -130,6 +138,7 @@ public class GameMenuUi : MonoBehaviour
         SetCoinEvent();
         SetBuildCooldown();
         SetBuildLimit();
+        GameManager.instance.player.SetShieldNum();
         if (objBuildCooldownNum >= objBuildCooldownDuration)
         {
             SetRunBuildBtn(true);
@@ -208,7 +217,7 @@ public class GameMenuUi : MonoBehaviour
     }
 
     //add char in player
-    public void AddCharPlayer(char abc)
+    public void SetCharPlayer(char abc)
     {
         //show in the player info ui
         //alphabetsPlayerInfo.Add(abc);
@@ -489,6 +498,17 @@ public class GameMenuUi : MonoBehaviour
         }
     }
 
+    //make shield
+    //USED () - in shield btn
+    public void ShieldBtn()
+    {
+        GameManager.instance.shieldBought--;
+        GameManager.instance.player.SetShieldNum();
+        //make shield
+        GameManager.instance.player.ChangeImmuneDamage(true);
+        PlaySoundBuild();
+    }
+
     //reset alphabet word button
     private void ResetAlphabetWordBtnClick()
     {
@@ -693,6 +713,8 @@ public class GameMenuUi : MonoBehaviour
     {
         wordPoint = 0;
         SetWordPointEvent();
+        //reset double earn
+        GameManager.instance.player.SetDoubleEarn(false);
     }
 
     //check build button availability - set clickable or not
@@ -1044,6 +1066,37 @@ public class GameMenuUi : MonoBehaviour
     public void SetChallengeMode()
     {
         GameManager.instance.inGame.ChangeDifficultyInChallengeMode();
+    }
+
+    //set status ui
+    public void SetStatusUi(bool isActive, int statusNo)
+    {
+        if (isActive)
+        {
+            statusInfoImg.gameObject.SetActive(true);
+            statusInfoImg.sprite = statusSprite[statusNo];
+            statusActionImg.gameObject.SetActive(true);
+            statusActionImg.sprite = statusSprite[statusNo];
+        }
+        else
+        {
+            statusInfoImg.gameObject.SetActive(false);
+            statusActionImg.gameObject.SetActive(false);
+        }
+    }
+
+    //set shield earn ui
+    public void SetShieldBtn(bool isActive, int num)
+    {
+        if (isActive)
+        {
+            shieldBtn.gameObject.SetActive(true);
+            shieldText.text = num.ToString();
+        }
+        else
+        {
+            shieldBtn.gameObject.SetActive(false);
+        }
     }
 
     //play sound -------------------------------------------

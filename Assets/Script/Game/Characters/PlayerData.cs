@@ -15,6 +15,7 @@ public class PlayerData : MonoBehaviour
     //immune damage - use for in start game
     public int immuneDamageDuration = 150;
     public int immuneDamageCount;
+    public int doubleEarnCount, doubleEarnDuration = 200;
     public int addWordPt;
     public Vector3 originPos;
     //player info

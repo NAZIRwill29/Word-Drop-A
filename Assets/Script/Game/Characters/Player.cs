@@ -19,7 +19,8 @@ public class Player : MonoBehaviour
     public SpriteRenderer playerSr;
     public List<char> alphabetsStore;
     public float objHeight;
-    public bool isSquare;
+    //double earn = receive char double
+    public bool isSquare, isDoubleEarn, isStartDoubleEarn;
     private bool isClimb, isRunFinish;
     //for push forward by monster
     //private bool isPush;
@@ -69,6 +70,7 @@ public class Player : MonoBehaviour
     {
         if (!GameManager.instance.isStartGame || GameManager.instance.isPauseGame)
             return;
+        //shield
         if (playerData.immuneDamageCount < playerData.immuneDamageDuration)
         {
             playerData.immuneDamageCount++;
@@ -79,6 +81,19 @@ public class Player : MonoBehaviour
             playerData.isImmuneDamage = false;
             playerAnim.SetBool("shield", false);
             //Debug.Log("stop immuneDamage - " + playerData.isImmuneDamage + playerData.immuneDamageCount);
+        }
+        //double earn
+        if (playerData.doubleEarnCount < playerData.doubleEarnDuration)
+        {
+            playerData.doubleEarnCount++;
+        }
+        else
+        {
+            //prevent from repeat many time
+            if (!isStartDoubleEarn)
+                return;
+            SetDoubleEarn(false);
+            isStartDoubleEarn = false;
         }
         //if (isPush)
         //PushByMonster();
@@ -247,22 +262,108 @@ public class Player : MonoBehaviour
         gameMenuUi.SetHpUI(false);
     }
 
+    //char-----------------------------------
     public void ReceiveChar(char abc)
     {
-        if (playerData.isImmune)
-            return;
         PlaySoundChar();
-        alphabetsStore.Add(abc);
-        //if more than char max ->  remove first char
-        if (alphabetsStore.Count > playerData.charMaxNo)
-            alphabetsStore.RemoveAt(0);
-        gameMenuUi.AddCharPlayer(abc);
+        //check if double earn
+        if (isDoubleEarn)
+        {
+            //double earn
+            for (int i = 0; i < 2; i++)
+            {
+                alphabetsStore.Add(abc);
+            }
+        }
+        else
+            //single earn
+            alphabetsStore.Add(abc);
+        SetAlphabetStore(abc);
         //TUTORIAL MODE ()
         if (!GameManager.instance.isTutorialMode)
             return;
         if (GameManager.instance.tutorial.TutorialPhaseNo == 2)
             GameManager.instance.tutorial.Tutorial2Trigger(alphabetsStore.Count);
     }
+    //for reverse char
+    public void ReceiveReverseChar(char abc)
+    {
+        RemoveAddChar(abc, 1);
+    }
+    //for blood char
+    public void ReceiveBloodChar(char abc)
+    {
+        isStartDoubleEarn = true;
+        RemoveAddChar(abc, 3);
+        SetDoubleEarn(true);
+    }
+    //for shield char
+    public void ReceiveShieldChar(char abc)
+    {
+        RemoveAddChar(abc, 2);
+        GameManager.instance.shieldBought++;
+        SetShieldNum();
+    }
+    //remove then add char
+    public void RemoveAddChar(char abc, int mult)
+    {
+        PlaySoundChar();
+        //remove first char x4
+        if (!playerData.isImmuneDamage)
+        {
+            //check if player alphabet is low then wanter remove
+            if (alphabetsStore.Count < mult)
+                Death("alphabet");
+            else
+            {
+                for (int i = 0; i < mult; i++)
+                {
+                    alphabetsStore.RemoveAt(0);
+                }
+            }
+        }
+        //check if double earn
+        if (isDoubleEarn)
+        {
+            //double earn
+            for (int i = 0; i < 2; i++)
+            {
+                alphabetsStore.Add(abc);
+            }
+        }
+        else
+            //single earn
+            alphabetsStore.Add(abc);
+        SetAlphabetStore(abc);
+    }
+    //limit alphabet store
+    private void SetAlphabetStore(char abc)
+    {
+        //if more than char max ->  remove first char
+        if (alphabetsStore.Count > playerData.charMaxNo)
+            alphabetsStore.RemoveAt(0);
+        gameMenuUi.SetCharPlayer(abc);
+    }
+    //set double earn
+    public void SetDoubleEarn(bool isTrue)
+    {
+        isDoubleEarn = isTrue;
+        if (isTrue)
+            playerData.doubleEarnCount = 0;
+        //set ui
+        GameManager.instance.gameMenuUi.SetStatusUi(isTrue, 0);
+    }
+    //set shield status num
+    public void SetShieldNum()
+    {
+        int num = GameManager.instance.shieldBought;
+        if (num > 0)
+            //set active            
+            gameMenuUi.SetShieldBtn(true, num);
+        else
+            gameMenuUi.SetShieldBtn(false, num);
+    }
+    //----------------------------------------
 
     public void ReceiveBook(int num)
     {
@@ -734,7 +835,7 @@ public class Player : MonoBehaviour
         //if more than char max ->  remove first char
         if (alphabetsStore.Count > playerData.charMaxNo)
             alphabetsStore.RemoveAt(0);
-        gameMenuUi.AddCharPlayer(abc);
+        gameMenuUi.SetCharPlayer(abc);
     }
     public void ChangeImmuneDamage(bool isTrue)
     {

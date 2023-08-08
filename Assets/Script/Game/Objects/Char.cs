@@ -33,7 +33,28 @@ public class Char : DropObject
             {
                 //make trigger once only
                 isTouched = true;
-                GameManager.instance.player.SendMessage("ReceiveChar", alphabet);
+                if (!isReverseObj)
+                    GameManager.instance.player.SendMessage("ReceiveChar", alphabet);
+                else
+                {
+                    switch (reverseCharType)
+                    {
+                        //normal reverse
+                        case 0:
+                            GameManager.instance.player.SendMessage("ReceiveReverseChar", alphabet);
+                            break;
+                        //blood
+                        case 1:
+                            GameManager.instance.player.SendMessage("ReceiveBloodChar", alphabet);
+                            break;
+                        //shield
+                        case 2:
+                            GameManager.instance.player.SendMessage("ReceiveShieldChar", alphabet);
+                            break;
+                        default:
+                            break;
+                    }
+                }
                 //coll.SendMessage("ReceiveChar", alphabet);
                 //put to birth location
                 transform.position = originalPos;
