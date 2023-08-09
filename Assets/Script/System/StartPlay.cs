@@ -39,6 +39,8 @@ public class StartPlay : MonoBehaviour
         //perk 1
         if (GameManager.instance.inGame.isIncreaseDifficulty)
             perkNo = 1;
+            if (GameManager.instance.inGame.isDoubleDamage)
+                perkNo = 4;
         //check monster existence
         if (GameManager.instance.inGame.monster)
         {
@@ -48,6 +50,8 @@ public class StartPlay : MonoBehaviour
             //perk 3
             if (GameManager.instance.inGame.monster.isForeverChangeState)
                 perkNo = 3;
+                if (GameManager.instance.inGame.isDoubleDamage)
+                perkNo = 5;
         }
         startPlayAnim.SetInteger("startPlay", perkNo);
     }

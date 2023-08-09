@@ -101,7 +101,7 @@ public class MainMenuUI : MonoBehaviour
         //Update player info
         //make show level up option only
         GameManager.instance.player.LevelUp(true);
-        if (GameManager.instance.playerData.levelPlayer == 6)
+        if (GameManager.instance.playerData.levelPlayer == 7)
             lvlText.text = "Lv " + GameManager.instance.playerData.levelPlayer + " (MAX)";
         else
             lvlText.text = "Lv " + GameManager.instance.playerData.levelPlayer;
@@ -142,13 +142,16 @@ public class MainMenuUI : MonoBehaviour
                 coinNeed = GameManager.instance.coin - 30;
                 break;
             case 4:
-                coinNeed = GameManager.instance.coin - 55;
+                coinNeed = GameManager.instance.coin - 60;
                 break;
             case 5:
                 coinNeed = GameManager.instance.coin - 90;
                 break;
             case 6:
-                coinNeed = GameManager.instance.coin - 135;
+                coinNeed = GameManager.instance.coin - 140;
+                break;
+            case 7:
+                coinNeed = GameManager.instance.coin - 180;
                 break;
             default:
                 return "";
@@ -171,13 +174,16 @@ public class MainMenuUI : MonoBehaviour
                 bookNeed = GameManager.instance.playerData.bookNum - 3;
                 break;
             case 4:
-                bookNeed = GameManager.instance.playerData.bookNum - 5;
+                bookNeed = GameManager.instance.playerData.bookNum - 6;
                 break;
             case 5:
-                bookNeed = GameManager.instance.playerData.bookNum - 8;
+                bookNeed = GameManager.instance.playerData.bookNum - 9;
                 break;
             case 6:
                 bookNeed = GameManager.instance.playerData.bookNum - 12;
+                break;
+            case 7:
+                bookNeed = GameManager.instance.playerData.bookNum - 15;
                 break;
             default:
                 return "";

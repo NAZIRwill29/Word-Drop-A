@@ -208,6 +208,8 @@ public class GameManager : MonoBehaviour
         //mainMenuUI.blackScreen2.SetActive(false);
         //change music based on inGame
         gameSettings.ChangeMusicBackground(true, 0);
+        //reset shield
+        shieldBought = 0;
     }
 
     //pause game

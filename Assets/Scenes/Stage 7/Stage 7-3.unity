@@ -1123,6 +1123,10 @@ PrefabInstance:
       propertyPath: originalPos.y
       value: 21
       objectReference: {fileID: 0}
+    - target: {fileID: 6708138376988036250, guid: 355a4c85cafe0244f9afc57791cbc810, type: 3}
+      propertyPath: reverseCharType
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 355a4c85cafe0244f9afc57791cbc810, type: 3}
 --- !u!4 &214442726 stripped
@@ -2349,6 +2353,7 @@ MonoBehaviour:
   isBookSpawnOne: 0
   bookSpawnTime: 0
   isIncreaseDifficulty: 1
+  isDoubleDamage: 0
   playerPos: 0
   waterPos: 0
   monsterPos: 0
@@ -6571,6 +6576,10 @@ PrefabInstance:
     - target: {fileID: 6708138376988036250, guid: 355a4c85cafe0244f9afc57791cbc810, type: 3}
       propertyPath: originalPos.y
       value: 21
+      objectReference: {fileID: 0}
+    - target: {fileID: 6708138376988036250, guid: 355a4c85cafe0244f9afc57791cbc810, type: 3}
+      propertyPath: reverseCharType
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 355a4c85cafe0244f9afc57791cbc810, type: 3}

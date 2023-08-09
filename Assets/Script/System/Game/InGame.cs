@@ -35,6 +35,7 @@ public class InGame : MonoBehaviour
     public bool isBookSpawnOne;
     public float bookSpawnTime;
     public bool isIncreaseDifficulty;
+    public bool isDoubleDamage;
     [SerializeField] private float playerPos, waterPos, monsterPos;
     //  0       1       2       3
     //ladder  ground  fence   slime

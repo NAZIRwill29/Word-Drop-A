@@ -537,13 +537,16 @@ public class Player : MonoBehaviour
                 LevelUpEvent(30, 3, isShowOnly);
                 break;
             case 4:
-                LevelUpEvent(55, 5, isShowOnly);
+                LevelUpEvent(60, 6, isShowOnly);
                 break;
             case 5:
-                LevelUpEvent(90, 8, isShowOnly);
+                LevelUpEvent(90, 9, isShowOnly);
                 break;
             case 6:
-                LevelUpEvent(135, 12, isShowOnly);
+                LevelUpEvent(140, 12, isShowOnly);
+                break;
+            case 7:
+                LevelUpEvent(180, 15, isShowOnly);
                 break;
             default:
                 break;
@@ -629,10 +632,18 @@ public class Player : MonoBehaviour
                 break;
             case 6:
                 playerData.charMaxNo = 20;
-                playerData.hpTemp = 5;
-                playerData.hp = 5;
+                playerData.hpTemp = 4;
+                playerData.hp = 4;
                 playerData.immuneDamageDuration = 250;
                 playerData.addWordPt = 3;
+                gameMenuUi.SetPlayerLevelUI(1);
+                break;
+            case 7:
+                playerData.charMaxNo = 20;
+                playerData.hpTemp = 5;
+                playerData.hp = 5;
+                playerData.immuneDamageDuration = 300;
+                playerData.addWordPt = 4;
                 gameMenuUi.SetPlayerLevelUI(1);
                 break;
             default:

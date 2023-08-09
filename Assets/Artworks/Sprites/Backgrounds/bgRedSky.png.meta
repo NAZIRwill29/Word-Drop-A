@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 9ad01da0b14f969408e4854219e99f3f
+guid: a9aeb802c7f928244ac17daf5cb5ca6b
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -153,158 +153,11 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: backgroundDrowned_0
+      name: bgRedSky_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 1000
-        width: 400
-        height: 1000
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 508506ce09ee1d649ba1ccb08318a888
-      internalID: -1804601620
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: backgroundDrowned_1
-      rect:
-        serializedVersion: 2
-        x: 400
-        y: 1000
-        width: 400
-        height: 1000
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: cf4b1461fee265542b41f2574717f3c9
-      internalID: -2007494523
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: backgroundDrowned_2
-      rect:
-        serializedVersion: 2
-        x: 800
-        y: 1000
-        width: 400
-        height: 1000
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1775b4a722df7f1409d78e6c24aec3ad
-      internalID: 444695397
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: backgroundDrowned_3
-      rect:
-        serializedVersion: 2
-        x: 1200
-        y: 1000
-        width: 400
-        height: 1000
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f98013c4759c75747915f0c7abe4d20d
-      internalID: -1158814147
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: backgroundDrowned_4
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 400
-        height: 1000
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b7fb026cfc5039c4f815c672814002dc
-      internalID: 1807852971
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: backgroundDrowned_5
-      rect:
-        serializedVersion: 2
-        x: 400
-        y: 0
-        width: 400
-        height: 1000
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 37069916c7e96ff4eadd79081f111a08
-      internalID: -1591166596
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: backgroundDrowned_6
-      rect:
-        serializedVersion: 2
-        x: 800
-        y: 0
-        width: 400
-        height: 1000
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f07c9ee1ed91add4a8cbbad5d8d4fd5e
-      internalID: -1517866150
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: backgroundDrowned_7
-      rect:
-        serializedVersion: 2
-        x: 1200
-        y: 0
+        x: 4
+        y: 4
         width: 400
         height: 1000
       alignment: 0
@@ -314,8 +167,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8576e5679da6e3643a1200a392606882
-      internalID: -1156675589
+      spriteID: ee76fdeb2da10704aae9f95ed8fee927
+      internalID: -1715271861
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bgRedSky_1
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 4
+        width: 400
+        height: 1000
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f75efab752446bf45b9a3dd46198ad9a
+      internalID: -352728071
       vertices: []
       indices: 
       edges: []
@@ -331,14 +205,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      backgroundDrowned_0: -1804601620
-      backgroundDrowned_1: -2007494523
-      backgroundDrowned_2: 444695397
-      backgroundDrowned_3: -1158814147
-      backgroundDrowned_4: 1807852971
-      backgroundDrowned_5: -1591166596
-      backgroundDrowned_6: -1517866150
-      backgroundDrowned_7: -1156675589
+      bgRedSky_0: -1715271861
+      bgRedSky_1: -352728071
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
