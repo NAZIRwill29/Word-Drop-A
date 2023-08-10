@@ -7,8 +7,10 @@ public class Char : DropObject
     public char alphabet;
     [SerializeField] private SpriteRenderer charSR;
     [SerializeField] private GameObject effect;
-    [Tooltip("reverse, blood, shield, rollette")]
+    [Tooltip("reverse, blood, shield, fake")]
     [SerializeField] private int reverseCharType;
+    //for fake char 
+    private int fakeNo;
     public void OnTriggerEnter2D(Collider2D coll)
     {
         if (GameManager.instance.isPauseGame)
@@ -51,6 +53,10 @@ public class Char : DropObject
                         case 2:
                             GameManager.instance.player.SendMessage("ReceiveShieldChar", alphabet);
                             break;
+                        //fake
+                        case 3:
+                            GameManager.instance.player.SendMessage("ReceiveFakeChar");
+                            break;
                         default:
                             break;
                     }
@@ -89,10 +95,19 @@ public class Char : DropObject
                 case 2:
                     charSR.sprite = GameManager.instance.shieldAlphabetSprite[(int)abc - 65];
                     break;
+                //fake
+                case 3:
+                    fakeNo = Random.Range(1, 36);
+                    charSR.sprite = GameManager.instance.fakeAlphabetSprite[fakeNo];
+                    break;
                 default:
                     break;
             }
-            effect.SetActive(true);
+            //all reverse except fake char white
+            if (fakeNo < 27)
+                effect.SetActive(true);
+            else
+                effect.SetActive(false);
         }
     }
 }

@@ -217,7 +217,7 @@ public class GameMenuUi : MonoBehaviour
     }
 
     //add char in player
-    public void SetCharPlayer(char abc)
+    public void SetCharPlayer()
     {
         //show in the player info ui
         //alphabetsPlayerInfo.Add(abc);

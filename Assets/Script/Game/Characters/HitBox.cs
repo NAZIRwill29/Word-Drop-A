@@ -28,6 +28,24 @@ public class HitBox : MonoBehaviour
             GameManager.instance.player.ReceiveChar(abc);
 
     }
+    public void ReceiveBloodChar(char abc)
+    {
+        if (parentType == 0)
+            GameManager.instance.player.ReceiveBloodChar(abc);
+
+    }
+    public void ReceiveShieldChar(char abc)
+    {
+        if (parentType == 0)
+            GameManager.instance.player.ReceiveShieldChar(abc);
+
+    }
+    public void ReceiveFakeChar()
+    {
+        if (parentType == 0)
+            GameManager.instance.player.ReceiveFakeChar();
+
+    }
     public void ReceiveBook(int num)
     {
         if (parentType == 0)

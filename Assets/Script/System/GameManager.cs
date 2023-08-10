@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour
     public InGame inGame;
     public InGameUi inGameUi;
     public Tutorial tutorial;
-    public Sprite[] alphabetSprite, reverseAlphabetSprite, bloodAlphabetSprite, shieldAlphabetSprite;
+    public Sprite[] alphabetSprite, reverseAlphabetSprite, bloodAlphabetSprite, shieldAlphabetSprite, fakeAlphabetSprite;
     //data to be saved
     public int passStageNo;
     public int coin, diamond, shieldBought, charBought;

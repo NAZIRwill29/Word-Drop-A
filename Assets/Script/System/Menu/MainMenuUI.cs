@@ -139,19 +139,19 @@ public class MainMenuUI : MonoBehaviour
                 coinNeed = GameManager.instance.coin - 10;
                 break;
             case 3:
-                coinNeed = GameManager.instance.coin - 30;
+                coinNeed = GameManager.instance.coin - 50;
                 break;
             case 4:
-                coinNeed = GameManager.instance.coin - 60;
+                coinNeed = GameManager.instance.coin - 100;
                 break;
             case 5:
-                coinNeed = GameManager.instance.coin - 90;
+                coinNeed = GameManager.instance.coin - 170;
                 break;
             case 6:
-                coinNeed = GameManager.instance.coin - 140;
+                coinNeed = GameManager.instance.coin - 250;
                 break;
             case 7:
-                coinNeed = GameManager.instance.coin - 180;
+                coinNeed = GameManager.instance.coin - 400;
                 break;
             default:
                 return "";
@@ -171,19 +171,19 @@ public class MainMenuUI : MonoBehaviour
                 bookNeed = GameManager.instance.playerData.bookNum - 1;
                 break;
             case 3:
-                bookNeed = GameManager.instance.playerData.bookNum - 3;
+                bookNeed = GameManager.instance.playerData.bookNum - 4;
                 break;
             case 4:
-                bookNeed = GameManager.instance.playerData.bookNum - 6;
-                break;
-            case 5:
                 bookNeed = GameManager.instance.playerData.bookNum - 9;
                 break;
+            case 5:
+                bookNeed = GameManager.instance.playerData.bookNum - 15;
+                break;
             case 6:
-                bookNeed = GameManager.instance.playerData.bookNum - 12;
+                bookNeed = GameManager.instance.playerData.bookNum - 22;
                 break;
             case 7:
-                bookNeed = GameManager.instance.playerData.bookNum - 15;
+                bookNeed = GameManager.instance.playerData.bookNum - 30;
                 break;
             default:
                 return "";
@@ -360,9 +360,15 @@ public class MainMenuUI : MonoBehaviour
                 case "Stage 3-3":
                     ShowLoadingScreenEvent(10);
                     break;
+                case "Stage 4-1":
+                    ShowLoadingScreenEvent(13);
+                    break;
+                case "Stage 4-2":
+                    ShowLoadingScreenEvent(14);
+                    break;
                 default:
                     //change tip module randomly
-                    int tipNo = Random.Range(1, 12);
+                    int tipNo = Random.Range(1, 15);
                     ShowLoadingScreenEvent(tipNo);
                     break;
             }
@@ -377,10 +383,10 @@ public class MainMenuUI : MonoBehaviour
         //change tip module
         tipModules.SetInteger("state", tipNo);
         if (tipNo == 0)
-            //show loading screen
+            //hide loading screen
             loadingScreenAnim.SetInteger("state", 0);
         else
-            //hide loading screen
+            //show loading screen
             loadingScreenAnim.SetInteger("state", 3);
     }
 
@@ -388,7 +394,7 @@ public class MainMenuUI : MonoBehaviour
     public void ShowTip()
     {
         tipScreenAnim.SetBool("show", true);
-        int tipNo = Random.Range(1, 12);
+        int tipNo = Random.Range(1, 15);
         tipAnim.SetInteger("state", tipNo);
     }
     //USED () - in closeTipBtn

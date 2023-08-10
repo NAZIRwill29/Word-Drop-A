@@ -7,7 +7,7 @@ public class Spawn : MonoBehaviour
     [SerializeField] private InGame inGame;
     public GameObject[] charObj, obstacleObj, bookObj, coinObj;
     private int index, charIndex, obsIndex, bookIndex, coinIndex;
-    private float posX;
+    [SerializeField] private float posX;
     //char
     public bool isSpawnStop, isTutorialMode, isBookStop, isStopFunc;
     //alphabet list
