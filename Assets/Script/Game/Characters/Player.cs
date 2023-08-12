@@ -296,8 +296,22 @@ public class Player : MonoBehaviour
     public void ReceiveFakeChar()
     {
         PlaySoundDamage();
-        //remove first char x4
-        if (!playerData.isImmuneDamage)
+        //if have shield remove charx5
+        if (playerData.isImmuneDamage)
+        {
+            //check if player alphabet is low then wanted remove
+            if (alphabetsStore.Count < 5)
+                Death("alphabet");
+            else
+            {
+                for (int i = 0; i < 5; i++)
+                {
+                    alphabetsStore.RemoveAt(0);
+                }
+            }
+        }
+        //if no shield remove charx10
+        else
         {
             //check if player alphabet is low then wanted remove
             if (alphabetsStore.Count < 10)
@@ -310,6 +324,7 @@ public class Player : MonoBehaviour
                 }
             }
         }
+
         SetAlphabetStore();
     }
     //remove then add char

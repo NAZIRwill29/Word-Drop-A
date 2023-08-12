@@ -2349,8 +2349,8 @@ MonoBehaviour:
   isSlime: 1
   ladderPt: 1
   groundPt: 2
-  fencePt: 7
-  slimePt: 8
+  fencePt: 8
+  slimePt: 9
   dangerDist: 0
   currentStageNo: 19
   sceneName: Stage 6-4

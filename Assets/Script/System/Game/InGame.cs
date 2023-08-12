@@ -53,6 +53,7 @@ public class InGame : MonoBehaviour
     public float dragCoinOri, dragBookOri, increaseNumCoin, increaseNumBook;
     //challenge stage
     public bool isChallengeStage;
+    public int challengeStageNo;
     private int diffChallengeChange;
     [Tooltip("only for challenge stage")] public GameObject spawnerChallengeGpObj;
     [Tooltip("only for challenge stage")] public GameObject[] spawnerChallengeObj, waterChallengeObj, monsterChallengeObj;

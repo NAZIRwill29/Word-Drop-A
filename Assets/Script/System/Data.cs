@@ -11,6 +11,7 @@ public class Data
     public string savedDate;
     public float playTime;
     public int passStageNo;
+    public List<int> challengePassNo;
     public int bookNumCollect;
     public int playerLevel;
     public int coin;

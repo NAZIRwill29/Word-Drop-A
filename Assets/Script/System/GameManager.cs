@@ -44,6 +44,7 @@ public class GameManager : MonoBehaviour
     public Sprite[] alphabetSprite, reverseAlphabetSprite, bloodAlphabetSprite, shieldAlphabetSprite, fakeAlphabetSprite;
     //data to be saved
     public int passStageNo;
+    public List<int> challengePassNo;
     public int coin, diamond, shieldBought, charBought;
     //public int coin, diamond, skinIndexBought;
     //variable
@@ -321,14 +322,10 @@ public class GameManager : MonoBehaviour
             gameData.dateNow = System.DateTime.Now.ToString("MM/dd/yyyy");
             gameData.playTime = playTime;
             gameData.passStageNo = passStageNo;
+            gameData.challengePassNo = challengePassNo;
             gameData.bookNumCollect = playerData.bookNum;
             gameData.playerLevel = playerData.levelPlayer;
             gameData.coin = coin;
-            //gameData.isMusicOn = gameSettings.isMusicOn;
-            //gameData.isSoundOn = gameSettings.isSoundOn;
-            gameData.musicVolume = gameSettings.musicVolume;
-            gameData.soundVolume = gameSettings.soundVolume;
-            //TODO () - uncomment when finish tutorial
             gameData.isHasTutorial = isHasTutorial;
             gameData.isPremiumPlan = isPremiumPlan;
             gameData.diamond = diamond;
@@ -336,6 +333,10 @@ public class GameManager : MonoBehaviour
             gameData.isBookAdsUsed = isBookAdsUsed;
             gameData.shieldBought = shieldBought;
             gameData.charBought = charBought;
+            //gameData.isMusicOn = gameSettings.isMusicOn;
+            //gameData.isSoundOn = gameSettings.isSoundOn;
+            gameData.musicVolume = gameSettings.musicVolume;
+            gameData.soundVolume = gameSettings.soundVolume;
             SavePrefFile();
             Debug.Log("Save state");
             if (!isNoCloud)
@@ -381,6 +382,7 @@ public class GameManager : MonoBehaviour
                 //start record playTime
                 isStartPlayTime = true;
                 passStageNo = gameData.passStageNo;
+                challengePassNo = gameData.challengePassNo;
                 player.SetBookNum(gameData.bookNumCollect);
                 Debug.Log("in LoadState : level = " + gameData.playerLevel);
                 player.SetPlayerLevel(gameData.playerLevel);
@@ -425,11 +427,13 @@ public class GameManager : MonoBehaviour
         //gameData.isSoundOn = true;
         //gameData.isMusicOn = true;
         //gameData.playTime = 0;
+        //gameData
         gameData.soundVolume = 1;
         gameData.musicVolume = 1;
         gameData.dateNow = "";
         gameData.savedDate = "";
         gameData.passStageNo = 0;
+        gameData.challengePassNo.Clear();
         gameData.bookNumCollect = 0;
         gameData.playerLevel = 1;
         gameData.coin = 0;
@@ -439,6 +443,20 @@ public class GameManager : MonoBehaviour
         gameData.skinIndexBought.Clear();
         gameData.shieldBought = 0;
         gameData.charBought = 0;
+        //data
+        gameSettings.ChangeMusicVolumeSystem(gameData.musicVolume);
+        gameSettings.ChangeSoundVolumeSystem(gameData.soundVolume);
+        passStageNo = 0;
+        challengePassNo.Clear();
+        player.SetBookNum(gameData.bookNumCollect);
+        player.SetPlayerLevel(gameData.playerLevel);
+        coin = 0;
+        isHasTutorial = false;
+        isPremiumPlan = false;
+        diamond = 0;
+        skinIndexBought.Clear();
+        shieldBought = 0;
+        charBought = 0;
     }
     private void DebugAllData()
     {
@@ -639,6 +657,14 @@ public class GameManager : MonoBehaviour
             //when pass new next stage - save cloud
             SaveState(false, false);
         }
+        //Challenge MODE ()
+        if (inGame.isChallengeStage)
+        {
+            int num = inGame.challengeStageNo;
+            //check if already exist
+            if (!challengePassNo.Contains(num))
+                challengePassNo.Add(num);
+        }
     }
 
     //DELETE ()
@@ -731,6 +757,7 @@ public class GameManager : MonoBehaviour
         gameData.isPremiumPlan = data.isPremiumPlan;
         gameData.playTime = data.playTime;
         gameData.passStageNo = data.passStageNo;
+        gameData.challengePassNo = data.challengePassNo;
         gameData.playerLevel = data.playerLevel;
         gameData.musicVolume = data.musicVolume;
         gameData.soundVolume = data.soundVolume;
