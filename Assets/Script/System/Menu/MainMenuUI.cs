@@ -16,7 +16,7 @@ public class MainMenuUI : MonoBehaviour
     public Slider musicSlider, soundSlider;
     [SerializeField]
     private Animator mainMenuAnim, backgroundAnim, playerInfoWindowAnim, settingWindowAnim, playerInfoBtnAnim, playerLvlBtnAnim;
-    public Animator loadingScreenAnim, tipModules, levelWindowAnim, tipAnim, tipScreenAnim;
+    public Animator loadingScreenAnim, tipModules, levelWindowAnim, tipAnim, tipScreenAnim, challengeWindowAnim;
     //player info window
     public Image playerImg;
     public TextMeshProUGUI lvlText, hpText, abcText, shieldText, strengthText, addWordPtText, coinText, bookText;
@@ -27,6 +27,8 @@ public class MainMenuUI : MonoBehaviour
     public Button[] stageBtnBtn;
     public GameObject[] stageBtnFalse;
     [SerializeField] private ScrollRect levelScrollRect;
+    [SerializeField] private Image[] challengeCompleteImg;
+    [SerializeField] private TextMeshProUGUI[] challengeCompleteText, challengeImcompleteText;
     //private bool isLoadingScreenAnimate;
     // Start is called before the first frame update
     void Start()
@@ -59,7 +61,7 @@ public class MainMenuUI : MonoBehaviour
     }
 
     //level window------------------------------
-    //USED () - in play btn
+    //USED () - in normalPlayBtn
     public void LevelWindow()
     {
         //hide stage btn
@@ -93,6 +95,27 @@ public class MainMenuUI : MonoBehaviour
         levelScrollRect.verticalNormalizedPosition = 1;
     }
     //----------------------------------------
+
+    //challenge window--------------------------
+    //USED () - in challengePlayBtn
+    public void ChallengeWindow()
+    {
+        //hide all
+        for (int i = 0; i < challengeCompleteImg.Length; i++)
+        {
+            challengeCompleteImg[i].enabled = false;
+            challengeCompleteText[i].enabled = false;
+            challengeImcompleteText[i].enabled = true;
+        }
+        //show complete stat for every challenge stage completed
+        foreach (var item in GameManager.instance.challengePassNo)
+        {
+            challengeCompleteImg[item].enabled = true;
+            challengeCompleteText[item].enabled = true;
+            challengeImcompleteText[item].enabled = false;
+        }
+    }
+    //------------------------------------------
 
     //player info window----------------------
     //USED () - in player info btn
@@ -322,6 +345,10 @@ public class MainMenuUI : MonoBehaviour
     public void LevelWindowAnim(int num)
     {
         levelWindowAnim.SetInteger("state", num);
+    }
+    public void ChallengeWindowAnim(int num)
+    {
+        challengeWindowAnim.SetInteger("state", num);
     }
     //---------------------------------------------------
 

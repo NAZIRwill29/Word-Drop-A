@@ -117,9 +117,8 @@ public class InGame : MonoBehaviour
             // make win and stop challenge
             if (timeChallengeChange >= 1400)
             {
-                if (!inGameUi.isRun)
-                    GameManager.instance.player.Win(true);
-                else
+                //win for run only
+                if (inGameUi.isRun)
                     GameManager.instance.player.Win(false);
             }
             else
@@ -248,6 +247,7 @@ public class InGame : MonoBehaviour
             fencePt++;
             slimePt++;
             GameManager.instance.gameMenuUi.SetBuildBtnsActive();
+            timeIncNum--;
         }
         ChangeSpawnInChallengeMode();
         //make change 3 time
@@ -301,7 +301,7 @@ public class InGame : MonoBehaviour
         {
             if (inGameUi.isRun)
                 return;
-            if (spawnIndex > 12)
+            if (spawnIndex > 15)
                 GameManager.instance.player.Win(true);
         }
     }
