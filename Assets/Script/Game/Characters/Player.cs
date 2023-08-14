@@ -190,13 +190,13 @@ public class Player : MonoBehaviour
     //when hitted by obj or damaged ground
     public void ReceiveDamage(Damage dmg)
     {
+        if (playerData.isImmune)
+            return;
         if (playerData.isImmuneDamage)
         {
             PlaySoundImmune();
             return;
         }
-        if (playerData.isImmune)
-            return;
         if (dmg.objType == "Spike")
             GameManager.instance.inGame.groundManager.PlaySoundAttack1();
         else
@@ -237,13 +237,13 @@ public class Player : MonoBehaviour
     //call when attacked by monster
     public void ReceiveDamageHp(Damage dmg)
     {
+        if (playerData.isImmune)
+            return;
         if (playerData.isImmuneDamage)
         {
             PlaySoundImmune();
             return;
         }
-        if (playerData.isImmune)
-            return;
         if (playerData.hpTemp > 1)
         {
             PlaySoundDamage();
@@ -265,6 +265,8 @@ public class Player : MonoBehaviour
     //char-----------------------------------
     public void ReceiveChar(char abc)
     {
+        if (playerData.isImmune)
+            return;
         PlaySoundChar();
         AddChar(abc);
         //TUTORIAL MODE ()
@@ -276,11 +278,15 @@ public class Player : MonoBehaviour
     //for reverse char
     public void ReceiveReverseChar(char abc)
     {
+        if (playerData.isImmune)
+            return;
         RemoveAddChar(abc, 1);
     }
     //for blood char
     public void ReceiveBloodChar(char abc)
     {
+        if (playerData.isImmune)
+            return;
         isStartDoubleEarn = true;
         RemoveAddChar(abc, 5);
         SetDoubleEarn(true);
@@ -288,6 +294,8 @@ public class Player : MonoBehaviour
     //for shield char
     public void ReceiveShieldChar(char abc)
     {
+        if (playerData.isImmune)
+            return;
         RemoveAddChar(abc, 5);
         GameManager.instance.shieldBought++;
         SetShieldNum();
@@ -295,6 +303,8 @@ public class Player : MonoBehaviour
     //for skull char
     public void ReceiveFakeChar()
     {
+        if (playerData.isImmune)
+            return;
         PlaySoundDamage();
         //if have shield remove charx5
         if (playerData.isImmuneDamage)
@@ -324,12 +334,13 @@ public class Player : MonoBehaviour
                 }
             }
         }
-
         SetAlphabetStore();
     }
     //remove then add char
     public void RemoveAddChar(char abc, int removeNum)
     {
+        if (playerData.isImmune)
+            return;
         PlaySoundChar();
         //remove first char x4
         if (!playerData.isImmuneDamage)
@@ -700,6 +711,7 @@ public class Player : MonoBehaviour
         isClimb = true;
         playerAnim.SetTrigger("climb");
         PlaySoundClimb();
+        playerData.isImmune = true;
     }
     private void ClimbEvent()
     {

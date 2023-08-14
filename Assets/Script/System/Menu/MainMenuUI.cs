@@ -445,6 +445,13 @@ public class MainMenuUI : MonoBehaviour
         GameManager.instance.connectBrowser.OpenUrl("");
     }
 
+    //open url
+    //USED () - in facebook btn
+    public void OpenUrl(string urlName)
+    {
+        GameManager.instance.connectBrowser.OpenUrl(urlName);
+    }
+
     //play sound -------------------------------------------
     public void PlaySoundPlay()
     {

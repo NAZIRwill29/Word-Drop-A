@@ -155,6 +155,10 @@ public class Spawn : MonoBehaviour
         //make it not spawn when time less
         if (inGame.timeBook < inGame.bookSpawnTime)
             return;
+        //decide if spawn or not
+        int decideNum = Random.Range(0, 1);
+        if (decideNum == 0)
+            return;
         SpawnObject(bookObj[bookIndex]);
         bookObj[bookIndex].GetComponent<Book>().ChangeIsTouched(false);
         Debug.Log("spawn book");

@@ -479,8 +479,8 @@ public class GameManager : MonoBehaviour
     {
         if (!isSuccesLogin)
             return;
-        if (!isSuccessLoadCloud)
-            return;
+        // if (!isSuccessLoadCloud)
+        //     return;
         //gameData.savedDate = "";
         Debug.Log("save : dateNow = " + System.DateTime.Now.ToString("MM/dd/yyyy") + ", savedDate = " + gameData.savedDate);
         //make it able to save disregard condition

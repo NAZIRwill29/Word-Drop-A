@@ -1058,7 +1058,8 @@ public class GameMenuUi : MonoBehaviour
     //show interstitial ads
     public void ShowInterstitial()
     {
-        GameManager.instance.ShowInterstitial();
+        //TODO () - decide want to use or not
+        //GameManager.instance.ShowInterstitial();
     }
 
     //DELETE ()
